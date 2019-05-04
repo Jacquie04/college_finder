@@ -47,12 +47,11 @@ function HeaderLinks({ ...props }) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="https://www.creative-tim.com/product/material-kit-react"
+          href="/Home"
           color="transparent"
           target="_blank"
           className={classes.navLink}
-        >
-          <CloudDownload className={classes.icons} /> Download
+        >  Search
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
