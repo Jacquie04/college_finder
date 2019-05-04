@@ -3,6 +3,7 @@ const path = require("path");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 const app = express();
+var db = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -15,6 +16,9 @@ if (process.env.NODE_ENV === "production") {
 //Handles routes. Will serve static react page if /api/x not utilized
 app.use(routes);
 
-app.listen(PORT, function() {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+//initialize sequelize
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
