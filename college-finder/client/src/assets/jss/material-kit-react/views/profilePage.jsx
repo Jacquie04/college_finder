@@ -1,6 +1,6 @@
-import { container, title } from "assets/jss/material-kit-react.jsx";
+import { container, title } from "../../material-kit-react.jsx";
 
-import imagesStyle from "assets/jss/material-kit-react/imagesStyles.jsx";
+import imagesStyle from "../../material-kit-react/imagesStyles.jsx";
 
 const profilePageStyle = {
   container,
