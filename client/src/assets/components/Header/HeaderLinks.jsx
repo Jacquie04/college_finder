@@ -51,7 +51,7 @@ function HeaderLinks({ ...props }) {
           color="transparent"
           target="_blank"
           className={classes.navLink}
-        >  Search
+        > <i className={"fab fa-search"} /> Search
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
