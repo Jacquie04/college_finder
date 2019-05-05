@@ -13,12 +13,13 @@ import Favorite from "@material-ui/icons/Favorite"; */
 // core components
 import Header from "../../assets/components/Header/Header.jsx";
 import HeaderLinks from "../../assets/components/Header/HeaderLinks.jsx";
+import Parallax from "../../assets/components/Parallax/Parallax.jsx"; 
 /* import Footer from "../../assets/components/Footer/Footer.jsx";
 import Button from "../../assets/components/CustomButtons/Button.jsx";
 import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
 import GridItem from "../../assets/components/Grid/GridItem.jsx";
 import NavPills from "../../assets/components/NavPills/NavPills.jsx";
-import Parallax from "../../assets/components/Parallax/Parallax.jsx"; */
+*/
 
 import profile from "../../assets/img/faces/christian.jpg";
 
