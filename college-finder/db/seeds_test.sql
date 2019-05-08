@@ -1,5 +1,3 @@
-DROP DATABASE IF EXISTS collegefinder;
-CREATE DATABASE collegefinder;
 
 INSERT INTO users (name)
 	VALUES ("Sam"), ("Steve"), ("Steve Two");
