@@ -1,22 +1,25 @@
 import React from "react";
-// nodejs library that concatenates classes
+
 import classNames from "classnames";
+
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // @material-ui/icons
 
 // core components
-import Header from "components/Header/Header.jsx";
-import Footer from "components/Footer/Footer.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import Parallax from "components/Parallax/Parallax.jsx";
+import Header from "../../assets/components/Header/Header.jsx";
+import Footer from "../../assets/components/Footer/Footer.jsx";
+import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
+import GridItem from "../../assets/components/Grid/GridItem.jsx";
+//import Button from "../../assets/components/CustomButtons/Button.jsx";
+//import HeaderLinks from "../../assets/components/Header/HeaderLinks.jsx";
+import Parallax from "../../assets/components/Parallax/Parallax.jsx";
 
-import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.jsx";
+import landingPageStyle from "../../assets/jss/material-kit-react/views/landingPage.jsx";
 
+// Section for this page
+import SearchSection from "./Section/SearchSection";
 
 const dashboardRoutes = [];
 
@@ -28,8 +31,7 @@ class LandingPage extends React.Component {
         <Header
           color="transparent"
           routes={dashboardRoutes}
-          brand="Material Kit React"
-          rightLinks={<HeaderLinks />}
+          brand="College Finder"
           fixed
           changeColorOnScroll={{
             height: 400,
@@ -37,11 +39,11 @@ class LandingPage extends React.Component {
           }}
           {...rest}
         />
-        <Parallax filter image={require("../../assets/jss/material-kit-react/views/college1.jpg")}>
+        <Parallax filter image={require("../../assets/img/college1.jpg")}>
           <div className={classes.container}>
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
-                <h1 className={classes.title}>Your Story Starts With Us.</h1>
+                <h1 className={classes.title}>Your College Search Starts Here.</h1>
                 <h4>
                  Applying to college is a very exciting time in your life, however, it can also 
                  become overwhelming. College Finder is here to help! Our goal is to allow our users
@@ -53,6 +55,11 @@ class LandingPage extends React.Component {
             </GridContainer>
           </div>
         </Parallax>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <div className={classes.container}>
+            <SearchSection />
+          </div>
+        </div>
         <Footer />
       </div>
     );
