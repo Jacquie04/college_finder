@@ -1,7 +1,7 @@
 {
     "development": {
       "username": "root",
-      "password": "password",
+      "password": "root",
       "database": "collegefinder",
       "host": "127.0.0.1",
       "port": 3306,
@@ -9,7 +9,7 @@
     },
     "test": {
       "username": "root",
-      "password": "password",
+      "password": "root",
       "database": "database_test",
       "host": "127.0.0.1",
       "port": 3306,
