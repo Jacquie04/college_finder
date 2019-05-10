@@ -3,8 +3,8 @@ const collegeController = require("../../controllers/collegeController");
 
 //matches with "/api/users"
 router.route("/")
-    .get() //add functionality later
-    .post(); //add functionality later
+    .get(collegeController.findUsers)
+    .post();
 
 
 router.route("/:id")
