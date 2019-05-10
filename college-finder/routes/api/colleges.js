@@ -3,13 +3,11 @@ const collegeController = require("../../controllers/collegeController");
 console.log("from colleges route");
 //matches with "/api/colleges"
 router.route("/")
-    .get(collegeController.findAll)
-    .post(collegeController.addCollege); 
-
+    .get(collegeController.findAllColleges)
+    .post(collegeController.addCollege)
 
 router.route("/:id")
-    .get()
-    .put()
-    .delete();
+    .get(collegeController.findOneCollege)
+    .delete(collegeController.deleteCollege);
 
 module.exports = router;
