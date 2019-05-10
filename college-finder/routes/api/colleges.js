@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const collegeController = require("../../controllers/collegeController");
-
+console.log("from colleges route");
 //matches with "/api/colleges"
 router.route("/")
     .get(collegeController.findAll)
