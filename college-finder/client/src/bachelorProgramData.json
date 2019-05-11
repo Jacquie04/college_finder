@@ -1,0 +1,212 @@
+[
+    {
+        "id": 1,
+        "program": "Agriculture",
+        "query": "latest.academics.program.bachelors.agriculture"
+    },
+
+    {
+        "id": 2,
+        "program": "Natural Resources and Conservation",
+        "query": "latest.academics.program.bachelors.resources"
+    },
+
+    {
+        "id": 3,
+        "program": "Architechture",
+        "query": "latest.academics.program.bachelors.architechture"
+    },
+
+    {
+        "id": 4,
+        "program": "Area, Ethnic, Cultural, Gender and Group Studies",
+        "query": "latest.academics.program.bachelors.ethnic_cultural_gender"
+    },
+
+    {
+        "id": 5,
+        "program": "Communications",
+        "query": "latest.academics.program.bachelors.communication"
+    },
+
+    {
+        "id": 6,
+        "program": "Communications Technologies, Technology and Support",
+        "query":"latest.academics.program.bachelors.communications_technology"
+    },
+
+    {
+        "id": 7,
+        "program": "Computer and Information Sciences",
+        "query":"latest.academics.program.bachelors.computer"
+    },
+
+    {
+        "id": 8,
+        "program": "Personal and Culinary Services",
+        "query:": "latest.academics.program.bachelors.personal_culinary"
+    },
+
+    {
+        "id": 9,
+        "program": "Engineering",
+        "query": "latest.academics.program.bachelors.engineering"
+    },
+
+    {
+        "id": 10,
+        "program": "Foreign Languages, Literatures and Linguistics",
+        "query":"latest.academics.program.bachelors.language"
+    },
+
+    {
+        "id": 11,
+        "program": "Human Sciences",
+        "query":"latest.academics.program.bachelors.family_consumer_science"
+    },
+
+    {
+        "id": 12,
+        "program": "Legal Professions and Studies",
+        "query":"latest.academics.program.bachelors.legal"
+    },
+
+    {
+        "id": 13,
+        "program": "English Language and Literature",
+        "query":"latest.academics.program.bachelors.english"
+    },
+
+    {
+        "id": 14,
+        "program": "Liberal Arts and Sciences",
+        "query": "latest.academics.program.bachelors.humanities"
+    },
+
+    {
+        "id": 15,
+        "program": "Library Science",
+        "query":"latest.academics.program.bachelors.library"
+    },
+
+    {
+        "id": 16,
+        "program": "Biology and Biomedical Science",
+        "query":"latest.academics.program.bachelors.biological"
+    },
+
+    {
+        "id": 17,
+        "program": "Math and Statistics",
+        "query": "latest.academics.program.bachelors.mathematics"
+    },
+
+    {
+        "id": 18,
+        "program": "Military Technologies",
+        "query":"latest.academics.program.bachelors.military"
+    },
+
+    {
+        "id": 19,
+        "program": "Parks Recreation, Leisure and Fitness Studies",
+        "query":"latest.academics.program.bachelors.agriculture.parks_recreation_fitness"
+    },
+
+    {
+        "id": 20,
+        "program": "Philosophy and Religious Studies",
+        "query": "latest.academics.program.bachelors.philosophy_religious"
+    },
+
+    {
+        "id": 21,
+        "program": "Theology and Religious Vocations",
+        "query":"latest.academics.program.bachelors.theology_religious_vocation"
+    },
+
+    {
+        "id": 22,
+        "program": "Physical Sciences",
+        "query":"latest.academics.program.bachelors.physical_science"
+    },
+
+    {
+        "id": 23,
+        "program": "Science Technology",
+        "query": "latest.academics.program.bachelors.science_technology"
+    },
+
+    {
+        "id": 24,
+        "program": "Psychology",
+        "query":"latest.academics.program.bachelors.psychology"
+    },
+
+    {
+        "id": 25,
+        "program": "Homeland Security, Law Enforcement, Firefighting and Protective Services",
+        "query":"latest.academics.program.bachelors.security_law_enforcement"
+    },
+
+    {
+        "id": 26,
+        "program": "Public Administration and Social Services",
+        "query": "latest.academics.program.public_administration_social_service"
+    },
+
+    {
+        "id": 27,
+        "program": "Social Sciences",
+        "query": "latest.academics.program.bachelors.social_science"
+    },
+
+    {
+        "id": 28,
+        "program": "Construction",
+        "query":"latest.academics.program.bachelors.construction"
+    },
+
+    {
+        "id": 29,
+        "program": "Mechanic and Repair Technologies",
+        "query": "latest.academics.program.bachelors.mechanic_repair_technology"
+    },
+
+    {
+        "id": 30,
+        "program": "Precision Production",
+        "query":"latest.academics.program.bachelors.precision_production"
+    },
+
+    {
+        "id": 31,
+        "program": "Transportation and Materials Moving",
+        "query": "latest.academics.program.bachelors.transportation"
+    },
+
+    {
+        "id": 32,
+        "program": "Visual and Performing Arts",
+        "query":"latest.academics.program.bachelors.visual_performing"
+    },
+
+    {
+        "id": 33,
+        "program": "Health Professions",
+        "query":"latest.academics.program.bachelors.health"
+    },
+
+    {
+        "id": 34,
+        "program": "Business, Management and Marketing",
+        "query": "latest.academics.program.bachelors.business_marketing"
+    },
+
+    {
+        "id": 35,
+        "program": "History",
+        "query":"latest.academics.program.bachelors.history"
+    }
+]
+
