@@ -5,17 +5,24 @@ module.exports = function(app) {
   // If the user has valid login credentials, send them to the members page.
 
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    res.json("/members");
+    res.json({nextRoute: "/members"});
   });
 //
   // Route for signing up a user. The user's password is automatically hashed and stored.
   app.post("/api/signup", function(req, res) {
     console.log(req.body);
     db.User.create({
-      username: req.body.username,
+      email: req.body.email,
       password: req.body.password
     }).then(function() {
-      res.redirect(307, "/api/login");
+      passport.authenticate('local')(req, res, () => {
+        req.session.save((err) => {
+            if (err) {
+                return next(err);
+            }
+
+    //   res.redirect(307, "/api/login");
+        res.json({nextRoute: "/members"})
     }).catch(function(err) {
       console.log(err);
       res.json(err);
@@ -35,12 +42,13 @@ module.exports = function(app) {
       res.json({});
     }
     else {
-      // Otherwise send back the user's username and id.
+      // Otherwise send back the user's email and id.
     
       res.json({
-        username: req.user.username,
+        email: req.user.email,
         id: req.user.id
       });
-    }
-  });
-};
+
+  }
+});
+}

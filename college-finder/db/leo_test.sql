@@ -1,8 +1,10 @@
 DROP DATABASE IF EXISTS collegefinder;
 CREATE DATABASE collegefinder;
 use collegefinder;
-CREATE TABLE users ( 
-name varchar(20) NOT NULL
+
+CREATE TABLE users (
+ id INT NOT NULL PRIMARY KEY,
+username varchar(20) NOT NULL
 );
 
 CREATE TABLE colleges (
@@ -10,9 +12,10 @@ name varchar(50) NOT NULL,
 alias varchar(30) NOT NULL,
 city varchar(30) NOT NULL,
 
+
 );
 
-INSERT INTO users (name)
+INSERT INTO users (username)
 	VALUES ("Sam"), ("Steve"), ("Steve Two");
 
 SELECT * FROM users;
