@@ -17,6 +17,7 @@ function PrivateRoute({ user, component: Component, ...rest }) {
         ) : (
           <Redirect
             to={{
+              //we dont have users or password so just change this line to what page you are working on. 
               pathname: "/login",
               state: { from: props.location }
             }}
@@ -34,10 +35,10 @@ class App extends Component {
 
   componentDidMount() {
     axios.get('/api/user')
-      .then(res => {
-        this.setState({ user: res.data.id }, () => {
-          this.props.history.push('/');
-        });
+      .then(res => {console.log(res);
+        // this.setState({ user: res.data.id }, () => {
+        //   this.props.history.push('/');
+        // });
       }).catch(err => {
         console.log('no user');
       });
