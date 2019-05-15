@@ -293,7 +293,7 @@ class RegistrationPage extends React.Component {
         />
 
 
-      <form className={classes.container} noValidate autoComplete="off">
+      <form className={classes.container} noValidate autoComplete="on">
         <TextField
           required
           id="filled-firstName"
