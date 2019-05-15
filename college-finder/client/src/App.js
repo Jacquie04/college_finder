@@ -1,10 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LandingPage from "./views/LandingPage/LandingPage";  
-import LoginPage from "./views/LoginPage/LoginPage";
-import ProfilePage from "./views/ProfilePage/ProfilePage"; 
-import RegistrationPage from "./views/RegistrationPage/RegistrationPage"; 
-
+import React, { Component } from 'react';
+import { BrowserRouter as BrowserRouter, Router, Redirect, Route, Switch } from "react-router-dom";
+// import LandingPage from "./views/LandingPage";  <Route exact path="/home" component={LandingPage} />
+import Login from "./views/LoginPage/LoginPage";
+import Register from "./views/ProfilePage/ProfilePage"; 
+import Home from "./views/ProfilePage/ProfilePage"; 
 
 import "./App.css";
 import axios from "axios";
@@ -19,7 +18,7 @@ function PrivateRoute({ user, component: Component, ...rest }) {
           <Redirect
             to={{
               pathname: "/login",
-              state: { from: props.location } 
+              state: { from: props.location }
             }}
           />
         )
@@ -52,12 +51,14 @@ class App extends Component {
 
   render() {
     return (
+      <BrowserRouter>
       <Switch>
         <Route path="/login" render={(props) => <Login {...props} setUser={this.setUser} /> } />
         <Route path="/register" component={Register} setUser={this.setUser} />
         <PrivateRoute path="/" exact component={Home} user={this.state.user} />
         <Route render={() => <Redirect to="/login" />} />
       </Switch>
+      </BrowserRouter>
     );
   }
 }
