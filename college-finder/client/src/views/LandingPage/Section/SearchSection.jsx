@@ -4,13 +4,15 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import NavigationIcon from '@material-ui/icons/Navigation';
+import Fab from '@material-ui/core/Fab';
 import PropTypes from 'prop-types';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+//import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+//import IconButton from '@material-ui/core/IconButton';
+//import InfoIcon from '@material-ui/icons/Info';
 //import tileData from './tileData';
 import stateData from '../../../stateData.json';
 import bachelorProgramData from '../../../bachelorProgramData.json'
@@ -53,16 +55,40 @@ const styles = theme => ({
  *   },
  * ];
  */
-function SearchSection(props) {
-  const { classes } = props;
+
+class SearchSection extends React.Component {
+
+  state = {
+    stateData,
+    bachelorProgramData,
+    satScore: 0,
+    schoolName: 'University of California Los Angeles'
+  };
+
+  handleChange = satScore => event => {
+    this.setState({
+      [satScore]: event.target.value,
+    });
+  };
+
+  handleChange = schoolName => event => {
+    this.setState({
+      [schoolName]: event.target.value,
+    });
+  };
+
+
+  render() {
+    const { classes, ...rest} = this.props;
 
   return (
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
         <GridListTile key="Subheader" cols={2} style={{ height: 'auto', align: 'center'}}>
           <ListSubheader component="div">College Lists Based on Your Search Criteria</ListSubheader>
+
           <TextField
-          id="filled-select-location"
+          id="filled-select-states"
           select
           className={classes.textField}
           value={this.state.stateData}
@@ -82,34 +108,23 @@ function SearchSection(props) {
             </MenuItem>
           ))}
         </TextField>
-
+        
         <TextField
-          id="filled-select-cost"
-          select
+          id="filled-satScore"
           className={classes.textField}
-          value={this.state.bachelorProgramData.cost}
-          onChange={this.handleChange('costs')}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
-          helperText="Select an Ideal Cost of Attendance Range"
+          value={this.state.satScore}
+          onChange={this.handleChange('satScore')}
+          helperText="Submit your SAT Score if available"
           margin="normal"
           variant="filled"
-        >
-          {bachelorProgramData.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+        />
+        
         <TextField
           id="filled-select-program"
           select
           className={classes.textField}
-          value={this.state.bachelorProgramData.programs}
-          onChange={this.handleChange('programs')}
+          value={this.state.bachelorProgramData}
+          onChange={this.handleChange('bachelorProgramData')}
           SelectProps={{
             MenuProps: {
               className: classes.menu,
@@ -120,11 +135,32 @@ function SearchSection(props) {
           variant="filled"
         >
           {bachelorProgramData.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+            <MenuItem key={option.query} value={option.query}>
+              {option.program}
             </MenuItem>
           ))}
         </TextField>
+        <TextField
+          id="filled-school"
+          className={classes.textField}
+          value={this.state.schoolName}
+          onChange={this.handleChange('schoolName')}
+          helperText="Search Colleges by Name"
+          margin="normal"
+          variant="filled"
+        />
+        
+        <Fab
+          variant="extended"
+          size="medium"
+          type="submit"
+          color='primary'
+          aria-label="Add"
+          className={classes.margin}
+        >
+          <NavigationIcon className={classes.extendedIcon} />
+          Submit
+        </Fab>
 
         </GridListTile>
         {/* {tileData.map(tile => (
@@ -142,8 +178,10 @@ function SearchSection(props) {
           </GridListTile>
         ))} */}
       </GridList>
+      
     </div>
   );
+};
 }
 
 SearchSection.propTypes = {
