@@ -89,7 +89,7 @@ class LoginPage extends React.Component {
                                             />
                                         </CardBody>
                                         <CardFooter className={classes.cardFooter}>
-                                            <Button simple color="primary" size="lg">
+                                            <Button simple color="primary" size="lg" href="/signup">
                                                 Sign Up!
                         </Button>
                                         </CardFooter>

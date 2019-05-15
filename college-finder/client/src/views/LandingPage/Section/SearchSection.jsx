@@ -2,61 +2,83 @@ import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
-// @material-ui/icons
-//import Chat from "@material-ui/icons/Chat";
-//import VerifiedUser from "@material-ui/icons/VerifiedUser";
-//import Fingerprint from "@material-ui/icons/Fingerprint";
-// core components
+import PropTypes from 'prop-types';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
+//import tileData from './tileData';
 
-import GridContainer from "../../../assets/components/Grid/GridContainer.jsx";
-import GridItem from "../../../assets/components/Grid/GridItem.jsx";
-import InfoArea from "../../../assets/components/InfoArea/InfoArea.jsx";
+//import searchStyle from "../../../assets/jss/material-kit-react/views/landingPageSections/searchStyle.jsx";
 
-import searchStyle from "../../../assets/jss/material-kit-react/views/landingPageSections/searchStyle.jsx";
 
-class SearchSection extends React.Component {
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.section}>
-        <GridContainer justify="center">
-          <GridItem xs={12} sm={12} md={8}>
-            <h2 className={classes.title}>Now You're Ready to Start your College Search!</h2>
-            <h5 className={classes.description}>
-            You will have to choose which state you want to go to school in to help us narrow
-            your search. You have the option of narrowing schools by cost, program, and SAT scores.
-            You can also see if you match with a school based on your own SAT score!
-            </h5>
-          </GridItem>
-        </GridContainer>
-        <div>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={4}>
-              <InfoArea
-                title="College 1"
-                description="Your first college match will appear here."
-                vertical
-              />
-            </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
-              <InfoArea
-                title="College 2"
-                description="Your second college match will appear here."
-                vertical
-              />
-            </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
-              <InfoArea
-                title="College 3"
-                description="Your third college match will appear here."
-                vertical
-              />
-            </GridItem>
-          </GridContainer>
-        </div>
-      </div>
-    );
-  }
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    textalign: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    width: 500,
+    height: 450,
+  },
+  icon: {
+    color: 'rgba(255, 255, 255, 0.54)',
+  },
+});
+
+/**
+ * The example data is structured as follows:
+ *
+ * import image from 'path/to/image.jpg';
+ * [etc...]
+ *
+ * const tileData = [
+ *   {
+ *     img: image,
+ *     title: 'Image',
+ *     author: 'author',
+ *   },
+ *   {
+ *     [etc...]
+ *   },
+ * ];
+ */
+function SearchSection(props) {
+  const { classes } = props;
+
+  return (
+    <div className={classes.root}>
+      <GridList cellHeight={180} className={classes.gridList}>
+        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+          <ListSubheader component="div">College Lists Based on Your Search Criteria</ListSubheader>
+        </GridListTile>
+        {/* {tileData.map(tile => (
+          <GridListTile key={tile.img}>
+            <img src={tile.img} alt={tile.title} />
+            <GridListTileBar
+              title={tile.title}
+              subtitle={<span>by: {tile.author}</span>}
+              actionIcon={
+                <IconButton className={classes.icon}>
+                  <InfoIcon />
+                </IconButton>
+              }
+            />
+          </GridListTile>
+        ))} */}
+      </GridList>
+    </div>
+  );
 }
 
-export default withStyles(searchStyle)(SearchSection);
+SearchSection.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SearchSection);
