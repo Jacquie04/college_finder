@@ -1,6 +1,6 @@
-import { title } from "assets/jss/material-kit-react.jsx";
+import { title } from "../../../material-kit-react.jsx";
 
-const productStyle = {
+const searchStyle = {
   section: {
     padding: "70px 0",
     textAlign: "center"
@@ -17,4 +17,4 @@ const productStyle = {
   }
 };
 
-export default productStyle;
+export default searchStyle;
