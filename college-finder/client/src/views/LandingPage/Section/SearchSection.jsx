@@ -78,6 +78,32 @@ class SearchSection extends React.Component {
     });
   };
 
+  handleChange = bachelorProgramData => event => {
+    this.setState({
+      [bachelorProgramData]: event.target.value,
+    });
+  };
+
+  handleChange = stateData => event => {
+    this.setState({
+      [stateData]: event.target.value,
+    });
+  };
+
+  handleSubmit = () => {
+    console.log("I AM A BUTTON!");
+    console.log(this.state.schoolName);
+    console.log(this.state.bachelorProgramData);
+    console.log(this.state.stateData);
+    console.log(this.state.satScore);
+
+    let nameOfSchool = this.state.schoolName.split(" ").join("%20");
+    console.log(nameOfSchool);
+
+    axios.get("https://api.data.gov/ed/collegescorecard/v1/schools?school.state=CA&latest.admissions.sat_scores.average.overall__range=..1400&_fields=school.name,school.alias,school.city,school.state,school.zip,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.tuition.in_state,latest.cost.tuition.out_of_state,latest.aid.loan_principal,latest.aid.median_debt.completers.overall,school.ownership&api_key=tsrb2IQI7sNv5A1HSBCH6lshc45rsbuPpDxsezrl")
+      .then(response => console.log(response.data.results[0]));
+  }
+
 
   render() {
     const { classes, ...rest} = this.props;
@@ -104,7 +130,7 @@ class SearchSection extends React.Component {
           variant="filled"
         >
           {stateData.map(option => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem key={option.label} value={option.label}>
               {option.label}
             </MenuItem>
           ))}
@@ -157,6 +183,7 @@ class SearchSection extends React.Component {
           type="submit"
           color='primary'
           aria-label="Add"
+          onClick={ () => this.handleSubmit() }
           className={classes.margin}
         >
           <NavigationIcon className={classes.extendedIcon} />
