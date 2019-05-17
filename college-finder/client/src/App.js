@@ -6,28 +6,8 @@ import Register from "./views/ProfilePage/ProfilePage";
 import Home from "./views/ProfilePage/ProfilePage"; 
 
 import "./App.css";
-//import axios from "axios";
+import axios from "axios";
 
-<<<<<<< HEAD
-// function PrivateRoute({ user, component: Component, ...rest }) {
-//   return (
-//     <Route {...rest}
-//       render={props =>
-//         !!user ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect
-//             to={{
-//               pathname: "/login",
-//               state: { from: props.location } 
-//             }}
-//           />
-//         )
-//       }
-//     />
-//   );
-// }
-=======
 function PrivateRoute({ user, component: Component, ...rest }) {
   return (
     <Route {...rest}
@@ -46,26 +26,13 @@ function PrivateRoute({ user, component: Component, ...rest }) {
       }
     />
   );
-}
->>>>>>> 749d05ec525f9dcd1d32d8f876b116e234ca66ac
+};
 
-// class App extends Component {
-//   state = {
-//     user: null
-//   };
+class App extends Component {
+  state = {
+    user: null
+  };
 
-<<<<<<< HEAD
-//   componentDidMount() {
-//     axios.get('/api/user')
-//       .then(res => {
-//         this.setState({ user: res.data.id }, () => {
-//           this.props.history.push('/');
-//         });
-//       }).catch(err => {
-//         console.log('no user');
-//       });
-//   }
-=======
   componentDidMount() {
     axios.get('/api/user')
       .then(res => {console.log(res);
@@ -75,29 +42,14 @@ function PrivateRoute({ user, component: Component, ...rest }) {
       }).catch(err => {
         console.log('no user');
       });
-  }
->>>>>>> 749d05ec525f9dcd1d32d8f876b116e234ca66ac
+  };
 
-//   setUser = (res) => {
-//       this.setState({ user: res.data.id }, () => {
-//         this.props.history.push('/');
-//       });
-//   } 
+  setUser = (res) => {
+      this.setState({ user: res.data.id }, () => {
+        this.props.history.push('/');
+      });
+  };
 
-//   render() {
-//     return (
-//       <Switch>
-//         <Route path="/login" render={(props) => <Login {...props} setUser={this.setUser} /> } />
-//         <Route path="/register" component={Register} setUser={this.setUser} />
-//         <PrivateRoute path="/" exact component={Home} user={this.state.user} />
-//         <Route render={() => <Redirect to="/login" />} />
-//       </Switch>
-//     );
-//   }
-// }
-
-<<<<<<< HEAD
-=======
   render() {
     return (
       <BrowserRouter>
@@ -110,9 +62,9 @@ function PrivateRoute({ user, component: Component, ...rest }) {
       </BrowserRouter>
     );
   }
-}
->>>>>>> 749d05ec525f9dcd1d32d8f876b116e234ca66ac
+};
 
+/*
 const App = () => (
   <Router>
     <div>
@@ -125,6 +77,6 @@ const App = () => (
     </div>
   </Router> 
 );
-
+*/
 
 export default App;
