@@ -65,14 +65,7 @@ class LoginPage extends React.Component {
                                         </CardHeader>
                                         <p className={classes.divider}>Or Sign Up</p>
                                         <CardBody>
-                                            <CustomInput
-                                                labelText="First Name..."
-                                                id="first"
-                                                formControlProps={{
-                                                    fullWidth: true
-                                                }}
-            
-                                            />
+                                          
                                             <CustomInput
                                                 labelText="Email..."
                                                 id="email"
@@ -89,6 +82,9 @@ class LoginPage extends React.Component {
                                             />
                                         </CardBody>
                                         <CardFooter className={classes.cardFooter}>
+                                        <Button simple color="primary" size="lg" href="/home">
+                                                Log In
+                        </Button>
                                             <Button simple color="primary" size="lg" href="/signup">
                                                 Sign Up!
                         </Button>

@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import { BrowserRouter as BrowserRouter, Router, Redirect, Route, Switch } from "react-router-dom";
-// import LandingPage from "./views/LandingPage";  <Route exact path="/home" component={LandingPage} />
-import Login from "./views/LoginPage/LoginPage";
-import Register from "./views/ProfilePage/ProfilePage"; 
-import Home from "./views/ProfilePage/ProfilePage"; 
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LandingPage from "./views/LandingPage/LandingPage";  
+import LoginPage from "./views/LoginPage/LoginPage";
+import ProfilePage from "./views/ProfilePage/ProfilePage"; 
+import RegistrationPage from "./views/RegistrationPage/RegistrationPage"; 
 
-import "./App.css";
-import axios from "axios";
 
 function PrivateRoute({ user, component: Component, ...rest }) {
   return (
@@ -64,7 +62,7 @@ class App extends Component {
   }
 }
 
-/*
+
 const App = () => (
   <Router>
     <div>
@@ -75,8 +73,7 @@ const App = () => (
         <Route exact path="/signup" component={RegistrationPage} />
       </Switch>
     </div>
-  </Router> 
+  </Router>
 );
-*/
 
 export default App;
