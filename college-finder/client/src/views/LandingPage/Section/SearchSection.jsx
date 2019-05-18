@@ -92,24 +92,27 @@ class SearchSection extends React.Component {
 
   handleSubmit = () => {
 
-    console.log("---------------------------------------");
-    console.log("Searching for the following parameters");
-    console.log(this.state.schoolName);
-    console.log(this.state.bachelorProgramData);
-    console.log(this.state.stateData);
-    console.log(this.state.satScore);
-    console.log("---------------------------------------");
-
     let queryString = "https://api.data.gov/ed/collegescorecard/v1/schools?";
     var api = "&api_key=tsrb2IQI7sNv5A1HSBCH6lshc45rsbuPpDxsezrl";
     var queryFields = "&_fields=school.name,school.alias,school.city,school.state,school.zip,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.tuition.in_state,latest.cost.tuition.out_of_state,latest.aid.loan_principal,latest.aid.median_debt.completers.overall,school.ownership";
 
+
+    console.log("---------------------------------------");
+    console.log("Searching for the following parameters:");
+
     //grabs user input from College Search Input
-    if (this.state.schoolName.length > 1) {
+    if (this.state.schoolName.length > 6) {
       let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
       var fullSchoolString = "school.name=" + nameOfSchool;
       queryString += fullSchoolString;
-      console.log(queryString);
+      console.log(nameOfSchool);
+    }
+
+    else if (this.state.schoolName.length >= 1) {
+      let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
+      var fullAliasString = "school.alias=" + nameOfSchool;
+      queryString += fullAliasString;
+      console.log(nameOfSchool);
     }
 
     else {
@@ -121,7 +124,7 @@ class SearchSection extends React.Component {
       let bachProg = this.state.bachelorProgramData;
       let bachProgString = "&" + bachProg + "=1";
       queryString += bachProgString;
-      console.log(queryString);
+      console.log(bachProg);
     }
 
     else {
@@ -133,15 +136,30 @@ class SearchSection extends React.Component {
       let stateInput = this.state.stateData;
       let stateInputString = "&school.state=" + stateInput;
       queryString += stateInputString;
-      console.log(queryString);
+      console.log(stateInput);
     }
 
     else {
       console.log("No State searched for");
     }
 
-    axios.get(queryString)
-      .then(response => console.log(response.data.results[0]));
+    //grabs user SAT input
+    if (this.state.satScore !== "") {
+      let satInput = this.state.satScore;
+      let satString = "&latest.admissions.sat_scores.average.overall__range=.." + satInput;
+      queryString += satString;
+      console.log(satInput);
+    }
+
+    else {
+      console.log("No SAT score provided");
+    }
+
+    console.log(queryString);
+    console.log("---------------------------------------");
+
+    axios.get(queryString + queryFields + api)
+      .then(response => console.log(response.data.results));
   }
 
 
