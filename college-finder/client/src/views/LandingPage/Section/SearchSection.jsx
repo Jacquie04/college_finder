@@ -1,6 +1,5 @@
 import React from "react";
-import axios from "axios";
-// @material-ui/core components
+//import axios from "axios";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,14 +9,14 @@ import Fab from '@material-ui/core/Fab';
 import PropTypes from 'prop-types';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-//import GridListTileBar from '@material-ui/core/GridListTileBar';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-//import IconButton from '@material-ui/core/IconButton';
-//import InfoIcon from '@material-ui/icons/Info';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
 //import tileData from './tileData';
 import stateData from '../../../stateData.json';
-import bachelorProgramData from '../../../bachelorProgramData.json'
-
+import bachelorProgramData from '../../../bachelorProgramData.json';
+import image1 from '../../../assets/img/college5.jpg';
 //import searchStyle from "../../../assets/jss/material-kit-react/views/landingPageSections/searchStyle.jsx";
 
 
@@ -32,20 +31,26 @@ const styles = theme => ({
   },
   gridList: {
     width: 500,
-    height: 450,
+    height: 1000,
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
+  tileImages: {
+    width: 200,
+    height: 200,
+  }
 });
+
+
 
 /**
  * The example data is structured as follows:
  *
- * import image from 'path/to/image.jpg';
+  import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const tileData = [
+ * const image = [
  *   {
  *     img: image,
  *     title: 'Image',
@@ -75,6 +80,18 @@ class SearchSection extends React.Component {
   handleChange = schoolName => event => {
     this.setState({
       [schoolName]: event.target.value,
+    });
+  };
+
+  handleChange = bachelorProgramData => event => {
+    this.setState({
+      [bachelorProgramData]: event.target.value,
+    });
+  };
+
+  handleChange = stateData => event => {
+    this.setState({
+      [stateData]: event.target.value,
     });
   };
 
@@ -164,20 +181,13 @@ class SearchSection extends React.Component {
         </Fab>
 
         </GridListTile>
-        {/* {tileData.map(tile => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
+          <GridListTile>
+            <img alt="college" src={image1}/>
             <GridListTileBar
-              title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
-              actionIcon={
-                <IconButton className={classes.icon}>
-                  <InfoIcon />
-                </IconButton>
-              }
+    
             />
           </GridListTile>
-        ))} */}
+    
       </GridList>
       
     </div>
