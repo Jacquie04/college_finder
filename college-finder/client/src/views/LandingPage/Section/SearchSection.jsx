@@ -60,10 +60,10 @@ const styles = theme => ({
 class SearchSection extends React.Component {
 
   state = {
-    stateData,
-    bachelorProgramData,
-    satScore: 0,
-    schoolName: 'University of California Los Angeles'
+    stateData: "",
+    bachelorProgramData: "",
+    satScore: "",
+    schoolName: ""
   };
 
   handleChange = satScore => event => {
@@ -77,6 +77,90 @@ class SearchSection extends React.Component {
       [schoolName]: event.target.value,
     });
   };
+
+  handleChange = bachelorProgramData => event => {
+    this.setState({
+      [bachelorProgramData]: event.target.value,
+    });
+  };
+
+  handleChange = stateData => event => {
+    this.setState({
+      [stateData]: event.target.value,
+    });
+  };
+
+  handleSubmit = () => {
+
+    let queryString = "https://api.data.gov/ed/collegescorecard/v1/schools?";
+    var api = "&api_key=tsrb2IQI7sNv5A1HSBCH6lshc45rsbuPpDxsezrl";
+    var queryFields = "&_fields=school.name,school.alias,school.city,school.state,school.zip,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.tuition.in_state,latest.cost.tuition.out_of_state,latest.aid.loan_principal,latest.aid.median_debt.completers.overall,school.ownership";
+
+
+    console.log("---------------------------------------");
+    console.log("Searching for the following parameters:");
+
+    //grabs user input from College Search Input
+    if (this.state.schoolName.length > 6) {
+      let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
+      var fullSchoolString = "school.name=" + nameOfSchool;
+      queryString += fullSchoolString;
+      console.log(nameOfSchool);
+    }
+
+    else if (this.state.schoolName.length >= 1) {
+      let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
+      var fullAliasString = "school.alias=" + nameOfSchool;
+      queryString += fullAliasString;
+      console.log(nameOfSchool);
+    }
+
+    else {
+      console.log("No school searched for");
+    }
+
+    //grabs Bachelors Program from list
+    if (this.state.bachelorProgramData !== "") {
+      let bachProg = this.state.bachelorProgramData;
+      let bachProgString = "&" + bachProg + "=1";
+      queryString += bachProgString;
+      console.log(bachProg);
+    }
+
+    else {
+      console.log("No bachelors program searched for");
+    }
+
+    //grabs user selected State
+    if (this.state.stateData !== "") {
+      let stateInput = this.state.stateData;
+      let stateInputString = "&school.state=" + stateInput;
+      queryString += stateInputString;
+      console.log(stateInput);
+    }
+
+    else {
+      console.log("No State searched for");
+    }
+
+    //grabs user SAT input
+    if (this.state.satScore !== "") {
+      let satInput = this.state.satScore;
+      let satString = "&latest.admissions.sat_scores.average.overall__range=.." + satInput;
+      queryString += satString;
+      console.log(satInput);
+    }
+
+    else {
+      console.log("No SAT score provided");
+    }
+
+    console.log(queryString);
+    console.log("---------------------------------------");
+
+    axios.get(queryString + queryFields + api)
+      .then(response => console.log(response.data.results));
+  }
 
 
   render() {
@@ -104,7 +188,7 @@ class SearchSection extends React.Component {
           variant="filled"
         >
           {stateData.map(option => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem key={option.label} value={option.label}>
               {option.label}
             </MenuItem>
           ))}
@@ -157,6 +241,7 @@ class SearchSection extends React.Component {
           type="submit"
           color='primary'
           aria-label="Add"
+          onClick={ () => this.handleSubmit() }
           className={classes.margin}
         >
           <NavigationIcon className={classes.extendedIcon} />
