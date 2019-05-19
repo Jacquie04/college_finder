@@ -285,20 +285,17 @@ componentDidUpdate = () => {
           <ListSubheader component="div">College Lists Based on Your Search Criteria</ListSubheader>
         </GridListTile>
         
-        {/* <div className ="testmapping">
-            {
-              collegeData.map(college => {
-                return (
-                  <ul>
-                    <college
-                      collegeId={college.id}
-                      collegeName={college.school.name}
-                    />
-                  </ul>
-                );
-              })
-            }
-        </div> */}
+        //playing with generating content
+        <div>
+          <h2>test college</h2>
+          {this.state.colleges.map(function(college){
+            return (
+              <div key={college.school.name} className="college">
+              <p> {college.school.name} </p>
+              </div>
+            )
+          })}
+        </div>
           
           <GridListTile style={{height:'300px', width:'300px'}}>
             <img alt="college" src={image1}/>
