@@ -9,7 +9,7 @@ var passport = require("./config/passport");
 var session = require("express-session");
 var LocalStrategy = require("passport-local").Strategy;
 
-/*
+
 const ensureLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated || !req.isAuthenticated()) {
     res.status(401).send();
@@ -18,7 +18,7 @@ const ensureLoggedIn = (req, res, next) => {
 
   next();
 };
-*/
+
 
 
 // set strategies and serializations
@@ -35,7 +35,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
 //Handles routes. Will serve static react page if /api/x not utilized
 app.use(routes);
 
@@ -45,7 +44,8 @@ app.get("*", function (req, res) {
 });
 
 //initialize sequelize
-db.sequelize.sync({ force: true }).then(function() {
+
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

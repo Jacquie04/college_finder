@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as BrowserRouter, Router, Redirect, Route, Switch } from "react-router-dom";
+import { Router, Redirect, Route, Switch } from "react-router-dom";
 // import LandingPage from "./views/LandingPage";  <Route exact path="/home" component={LandingPage} />
 import Login from "./views/LoginPage/LoginPage";
 import Register from "./views/ProfilePage/ProfilePage"; 
@@ -9,6 +9,7 @@ import "./App.css";
 import axios from "axios";
 
 function PrivateRoute({ user, component: Component, ...rest }) {
+  debugger;
   return (
     <Route {...rest}
       render={props =>
@@ -36,30 +37,30 @@ class App extends Component {
   componentDidMount() {
     axios.get('/api/user')
       .then(res => {console.log(res);
-        // this.setState({ user: res.data.id }, () => {
-        //   this.props.history.push('/');
-        // });
+         this.setState({ user: res.data.id }, () => {
+           this.props.history.push('/');
+         });
       }).catch(err => {
         console.log('no user');
       });
   }
 
   setUser = (res) => {
+    debugger;
       this.setState({ user: res.data.id }, () => {
-        this.props.history.push('/');
+        this.props.history.push('/home');
       });
   } 
 
   render() {
     return (
-      <BrowserRouter>
       <Switch>
         <Route path="/login" render={(props) => <Login {...props} setUser={this.setUser} /> } />
         <Route path="/register" component={Register} setUser={this.setUser} />
-        <PrivateRoute path="/" exact component={Home} user={this.state.user} />
+        <PrivateRoute path="/home" exact component={Home} user={this.state.user} />
         <Route render={() => <Redirect to="/login" />} />
+        
       </Switch>
-      </BrowserRouter>
     );
   }
 }
