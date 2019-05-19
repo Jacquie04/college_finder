@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-
+//import MaterialIcon, {colorPalette} from 'material-icons-react';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import NavigationIcon from '@material-ui/icons/Navigation';
@@ -10,14 +9,13 @@ import Fab from '@material-ui/core/Fab';
 import PropTypes from 'prop-types';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-//import GridListTileBar from '@material-ui/core/GridListTileBar';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-//import IconButton from '@material-ui/core/IconButton';
-//import InfoIcon from '@material-ui/icons/Info';
+import IconButton from '@material-ui/core/IconButton';
 //import tileData from './tileData';
 import stateData from '../../../stateData.json';
-import bachelorProgramData from '../../../bachelorProgramData.json'
-
+import bachelorProgramData from '../../../bachelorProgramData.json';
+import image1 from '../../../assets/img/college5.jpg';
 //import searchStyle from "../../../assets/jss/material-kit-react/views/landingPageSections/searchStyle.jsx";
 
 
@@ -32,30 +30,33 @@ const styles = theme => ({
   },
   gridList: {
     width: 500,
-    height: 450,
+    height: 1000,
+  },
+  gridListTile: {
+    height: 400,
+    width: 400
+  },
+  textField: {
+    display: 'flex',
+    justifyContent: 'space-around'
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
+  tileImages: {
+    width: 200,
+    height: 200,
+  },
+  margin: {
+    marginTop: 30,
+  },
+  listSubheader: {
+    textalign: 'right',
+    fontsize: 20,
+  },
+
 });
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
 
 class SearchSection extends React.Component {
 
@@ -63,7 +64,9 @@ class SearchSection extends React.Component {
     stateData: "",
     bachelorProgramData: "",
     satScore: "",
-    schoolName: ""
+    schoolName: "",
+    colleges: [],
+    error: null
   };
 
   handleChange = satScore => event => {
@@ -89,6 +92,7 @@ class SearchSection extends React.Component {
       [stateData]: event.target.value,
     });
   };
+
 
   handleSubmit = () => {
 
@@ -158,21 +162,49 @@ class SearchSection extends React.Component {
     console.log(queryString);
     console.log("---------------------------------------");
 
+  
     axios.get(queryString + queryFields + api)
-      .then(response => console.log(response.data.results));
-  }
+    //.then(response => console.log(response.data.results))
+      .then(response => {
+        this.setState({
+          colleges: response.data.results
+        });
+      });
+
+  //this.displayCollegeState()
+}
+
+// displayCollegeState = () => {
+//   console.log(this.state.colleges);
+// }
+
+componentDidUpdate = () => {
+  console.log(this.state.colleges);
+  //console.log(this.state.colleges[0]);
+ /* {this.state.colleges.map(entry => (
+    console.log(entry)
+  ))}*/
+}
+
 
 
   render() {
+
     const { classes, ...rest} = this.props;
+
+    //playing with marks ideas
+    // const collegeData = Object.values(this.state.colleges);
+    // console.log("here is collegeData");
+    // console.log(collegeData);
+
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto', align: 'center'}}>
-          <ListSubheader component="div">College Lists Based on Your Search Criteria</ListSubheader>
+      <GridList cellHeight={'auto'} className={classes.gridList}>
+        <GridListTile key="Subheader" cols={2} style={{ height: 'auto'}}>
+          <ListSubheader className={classes.listSubheader} component="div">The search begins here!</ListSubheader>
 
-          <TextField
+          <TextField 
           id="filled-select-states"
           select
           className={classes.textField}
@@ -244,27 +276,43 @@ class SearchSection extends React.Component {
           onClick={ () => this.handleSubmit() }
           className={classes.margin}
         >
-          <NavigationIcon className={classes.extendedIcon} />
+          <NavigationIcon className={classes.extendedIcon}/>
           Submit
         </Fab>
 
         </GridListTile>
-        {/* {tileData.map(tile => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
+        <GridListTile key="Subheader" cols={2} style={{ height: 'auto'}}>
+          <ListSubheader component="div">College Lists Based on Your Search Criteria</ListSubheader>
+        </GridListTile>
+        
+        {/* <div className ="testmapping">
+            {
+              collegeData.map(college => {
+                return (
+                  <ul>
+                    <college
+                      collegeId={college.id}
+                      collegeName={college.school.name}
+                    />
+                  </ul>
+                );
+              })
+            }
+        </div> */}
+          
+          <GridListTile style={{height:'300px', width:'300px'}}>
+            <img alt="college" src={image1}/>
             <GridListTileBar
-              title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
-              actionIcon={
-                <IconButton className={classes.icon}>
-                  <InfoIcon />
-                </IconButton>
-              }
+            //title={<span> {this.colleges} </span>}
+            //subtitle={<span>by: {data}</span>}
+                actionIcon={
+                  <IconButton className={classes.icon}>
+                  </IconButton>
+                }
             />
           </GridListTile>
-        ))} */}
+        
       </GridList>
-      
     </div>
   );
 };
