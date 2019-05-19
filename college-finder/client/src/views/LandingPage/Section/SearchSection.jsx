@@ -162,157 +162,128 @@ class SearchSection extends React.Component {
     console.log(queryString);
     console.log("---------------------------------------");
 
-  
+
     axios.get(queryString + queryFields + api)
-    //.then(response => console.log(response.data.results))
+      //.then(response => console.log(response.data.results))
       .then(response => {
         this.setState({
           colleges: response.data.results
         });
       });
 
-  //this.displayCollegeState()
-}
-
-// displayCollegeState = () => {
-//   console.log(this.state.colleges);
-// }
-
-componentDidUpdate = () => {
-  console.log(this.state.colleges);
-  //console.log(this.state.colleges[0]);
- /* {this.state.colleges.map(entry => (
-    console.log(entry)
-  ))}*/
-}
-
-
+  }
 
   render() {
 
-    const { classes, ...rest} = this.props;
+    const { classes, ...rest } = this.props;
 
-    //playing with marks ideas
-    // const collegeData = Object.values(this.state.colleges);
-    // console.log("here is collegeData");
-    // console.log(collegeData);
+    return (
+      <div className={classes.root}>
+        <GridList cellHeight={'auto'} className={classes.gridList}>
+          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+            <ListSubheader className={classes.listSubheader} component="div">The search begins here!</ListSubheader>
 
+            <TextField
+              id="filled-select-states"
+              select
+              className={classes.textField}
+              value={this.state.stateData}
+              onChange={this.handleChange('stateData')}
+              SelectProps={{
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              helperText="Narrow Colleges by State"
+              margin="normal"
+              variant="filled"
+            >
+              {stateData.map(option => (
+                <MenuItem key={option.label} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
-  return (
-    <div className={classes.root}>
-      <GridList cellHeight={'auto'} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto'}}>
-          <ListSubheader className={classes.listSubheader} component="div">The search begins here!</ListSubheader>
+            <TextField
+              id="filled-satScore"
+              className={classes.textField}
+              value={this.state.satScore}
+              onChange={this.handleChange('satScore')}
+              helperText="Submit your SAT Score if available"
+              margin="normal"
+              variant="filled"
+            />
 
-          <TextField 
-          id="filled-select-states"
-          select
-          className={classes.textField}
-          value={this.state.stateData}
-          onChange={this.handleChange('stateData')}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
-          helperText="Narrow Colleges by State"
-          margin="normal"
-          variant="filled"
-        >
-          {stateData.map(option => (
-            <MenuItem key={option.label} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        
-        <TextField
-          id="filled-satScore"
-          className={classes.textField}
-          value={this.state.satScore}
-          onChange={this.handleChange('satScore')}
-          helperText="Submit your SAT Score if available"
-          margin="normal"
-          variant="filled"
-        />
-        
-        <TextField
-          id="filled-select-program"
-          select
-          className={classes.textField}
-          value={this.state.bachelorProgramData}
-          onChange={this.handleChange('bachelorProgramData')}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
-          helperText="Please Select an Area of Study"
-          margin="normal"
-          variant="filled"
-        >
-          {bachelorProgramData.map(option => (
-            <MenuItem key={option.query} value={option.query}>
-              {option.program}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          id="filled-school"
-          className={classes.textField}
-          value={this.state.schoolName}
-          onChange={this.handleChange('schoolName')}
-          helperText="Search Colleges by Name"
-          margin="normal"
-          variant="filled"
-        />
-        
-        <Fab
-          variant="extended"
-          size="medium"
-          type="submit"
-          color='primary'
-          aria-label="Add"
-          onClick={ () => this.handleSubmit() }
-          className={classes.margin}
-        >
-          <NavigationIcon className={classes.extendedIcon}/>
-          Submit
+            <TextField
+              id="filled-select-program"
+              select
+              className={classes.textField}
+              value={this.state.bachelorProgramData}
+              onChange={this.handleChange('bachelorProgramData')}
+              SelectProps={{
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              helperText="Please Select an Area of Study"
+              margin="normal"
+              variant="filled"
+            >
+              {bachelorProgramData.map(option => (
+                <MenuItem key={option.query} value={option.query}>
+                  {option.program}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              id="filled-school"
+              className={classes.textField}
+              value={this.state.schoolName}
+              onChange={this.handleChange('schoolName')}
+              helperText="Search Colleges by Name"
+              margin="normal"
+              variant="filled"
+            />
+
+            <Fab
+              variant="extended"
+              size="medium"
+              type="submit"
+              color='primary'
+              aria-label="Add"
+              onClick={() => this.handleSubmit()}
+              className={classes.margin}
+            >
+              <NavigationIcon className={classes.extendedIcon} />
+              Submit
         </Fab>
 
-        </GridListTile>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto'}}>
-          <ListSubheader component="div">College Lists Based on Your Search Criteria</ListSubheader>
-        </GridListTile>
-        
-        //playing with generating content
-        <div>
-          <h2>test college</h2>
-          {this.state.colleges.map(function(college){
+          </GridListTile>
+          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+            <ListSubheader component="div">College Lists Based on Your Search Criteria</ListSubheader>
+          </GridListTile>
+
+          {this.state.colleges.map(function (college) {
             return (
-              <div key={college.school.name} className="college">
-              <p> {college.school.name} </p>
-              </div>
+              <GridListTile key={college["school.name"]} style={{ height: '300px', width: '300px' }}>
+                <img alt="college" src={image1} />
+                <GridListTileBar
+                  title={<span> {college["school.name"]} </span>}
+                  //subtitle={<span>by: {data}</span>}
+                  actionIcon={
+                    <IconButton className={classes.icon}>
+                    </IconButton>
+                  }
+                />
+              </GridListTile>
             )
           })}
-        </div>
-          
-          <GridListTile style={{height:'300px', width:'300px'}}>
-            <img alt="college" src={image1}/>
-            <GridListTileBar
-            //title={<span> {this.colleges} </span>}
-            //subtitle={<span>by: {data}</span>}
-                actionIcon={
-                  <IconButton className={classes.icon}>
-                  </IconButton>
-                }
-            />
-          </GridListTile>
-        
-      </GridList>
-    </div>
-  );
-};
+
+        </GridList>
+      </div>
+    );
+  };
 }
 
 SearchSection.propTypes = {
