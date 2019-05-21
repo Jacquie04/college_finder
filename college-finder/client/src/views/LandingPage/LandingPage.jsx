@@ -9,6 +9,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
 import Header from "../../assets/components/Header/Header.jsx";
+import HeaderLinks from "../../assets/components/Header/HeaderLinks.jsx";
 import Footer from "../../assets/components/Footer/Footer.jsx";
 import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
 import GridItem from "../../assets/components/Grid/GridItem.jsx";
@@ -37,6 +38,7 @@ class LandingPage extends React.Component {
             height: 400,
             color: "white"
           }}
+          rightLinks={<HeaderLinks />}
           {...rest}
         />
         <Parallax filter image={require("../../assets/img/college1.jpg")}>

@@ -21,7 +21,7 @@ import GridItem from "../../assets/components/Grid/GridItem.jsx";
 import NavPills from "../../assets/components/NavPills/NavPills.jsx";
 */
 
-import profile from "../../assets/img/faces/christian.jpg";
+//import profile from "../../assets/img/faces/christian.jpg";
 
 
 import profilePageStyle from "../../assets/jss/material-kit-react/views/profilePage.jsx";
@@ -39,7 +39,7 @@ class ProfilePage extends React.Component {
     <div>
       <Header
         color="transparent"
-        brand="College Finder SUCCESS"
+        brand="College Finder"
         rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{

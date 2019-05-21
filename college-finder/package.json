@@ -30,6 +30,8 @@
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "if-env": "^1.0.4",
+    "material-design-icons": "^3.0.1",
+    "material-icons-react": "^1.0.4",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",

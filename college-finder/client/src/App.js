@@ -6,7 +6,7 @@ import ProfilePage from "./views/ProfilePage/ProfilePage";
 import RegistrationPage from "./views/RegistrationPage/RegistrationPage"; 
 
 
-function PrivateRoute({ user, component: Component, ...rest }) {
+/*function PrivateRoute({ user, component: Component, ...rest }) {
   return (
     <Route {...rest}
       render={props =>
@@ -62,7 +62,7 @@ class App extends Component {
   }
 }
 
-
+*/
 const App = () => (
   <Router>
     <div>
