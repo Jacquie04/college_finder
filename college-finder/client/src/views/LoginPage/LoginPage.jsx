@@ -22,22 +22,22 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     // we use this to make the card to appear after the page has been rendered
-//    this.state = {
-//      cardAnimaton: "cardHidden"
-//    };
+    //    this.state = {
+    //      cardAnimaton: "cardHidden"
+    //    };
   }
   componentDidMount() {
-  // we add a hidden class to the card and after 700 ms we delete it and the transition appears
-// setTimeout(
-//    function() {
-//       this.setState({ cardAnimaton: "" });
- //     }.bind(this),
- //     700
- //   );
+    // we add a hidden class to the card and after 700 ms we delete it and the transition appears
+    // setTimeout(
+    //    function() {
+    //       this.setState({ cardAnimaton: "" });
+    //     }.bind(this),
+    //     700
+    //   );
   }
- 
+
   //AUTHENTIFICATION
-    state = {
+  state = {
     email: "",
     password: ""
   };
@@ -83,6 +83,7 @@ class LoginPage extends React.Component {
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={4}>
                 <Card className={classes[this.state.cardAnimaton]}>
+                
                   <form onSubmit={this.handleLogin} className={classes.form}>
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>Login</h4>
@@ -104,7 +105,7 @@ class LoginPage extends React.Component {
                         labelText="Password"
                         id="pass"
                         inputProps={{
-                            inputType: "password"
+                          inputType: "password"
                         }}
                         name="password"
                         value={this.state.password}
@@ -115,10 +116,23 @@ class LoginPage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button onClick={this.handleLogin} simple color="primary" id="loginButton" size="lg" href="/home">
+                      <Button
+                        onClick={this.handleLogin}
+                        simple
+                        color="primary"
+                        id="loginButton"
+                        size="lg"
+                        href="/home"
+                      >
                         Log In
                       </Button>
-                      <Button simple color="primary" id="signupButton" size="lg" href="/signup">
+                      <Button
+                        simple
+                        color="primary"
+                        id="signupButton"
+                        size="lg"
+                        href="/signup"
+                      >
                         Sign Up!
                       </Button>
                     </CardFooter>

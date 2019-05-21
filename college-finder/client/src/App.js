@@ -9,7 +9,7 @@ import "./App.css";
 import axios from "axios";
 
 function PrivateRoute({ user, component: Component, ...rest }) {
-  debugger;
+  //debugger;
   return (
     <Route {...rest}
       render={props =>
@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   setUser = (res) => {
-    debugger;
+    //debugger;
       this.setState({ user: res.data.id }, () => {
         this.props.history.push('/home');
       });
@@ -59,7 +59,7 @@ class App extends Component {
         <Route path="/register" component={Register} setUser={this.setUser} />
         <PrivateRoute path="/home" exact component={Home} user={this.state.user} />
         <Route render={() => <Redirect to="/login" />} />
-        
+      
       </Switch>
     );
   }
