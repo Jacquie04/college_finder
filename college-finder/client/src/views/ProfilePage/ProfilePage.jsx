@@ -23,7 +23,6 @@ import NavPills from "../../assets/components/NavPills/NavPills.jsx";
 
 import profile from "../../assets/img/faces/christian.jpg";
 
-
 import profilePageStyle from "../../assets/jss/material-kit-react/views/profilePage.jsx";
 
 class ProfilePage extends React.Component {
@@ -48,7 +47,7 @@ class ProfilePage extends React.Component {
         }}
         {...rest}
       />
-       <Parallax small filter image={require("../../assets/img/students1.jpg")} />
+       <Parallax  large filter image={require("../../assets/img/UCLA.gif")} />
     </div>
    );
   };
