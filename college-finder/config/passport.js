@@ -3,12 +3,16 @@ var LocalStrategy = require("passport-local").Strategy;
 
 var db = require("../models");
 
+
+
 //login with an email and password
-passport.use(new LocalStrategy({
-  usernameField: 'email',
-  passwordField: 'passwd'
+var localStrategy = new LocalStrategy({
+  usernameField: 'email'//,
+  // passwordField: 'passwd'
 },
-  function(username, password, done) {
+  function(email, password, done) {
+
+    console.log('hi');
     // When a user tries to sign in this code runs
     db.User.findOne({
       where: {
@@ -31,20 +35,22 @@ passport.use(new LocalStrategy({
       return done(null, dbUser);
     });
   }
-));
+);
 //code required by Sequelize to ensure password encription.
-passport.serializeUser(function(user, cb) {
+var serializeUser = function(user, cb) {
   console.log('hi from serialize')
   cb(null, user);
-});
+};
 
 
-passport.deserializeUser(function(id, cb) {
+var deserializeUser = function(id, cb) {
   console.log('hi from deserializeUser');
   cb(null, id);
-});
+};
 
 
-
-// Exporting our configured passport
-module.exports = passport;
+module.exports = {
+  serializeUser: serializeUser,
+  deserializeUser: deserializeUser,
+  localStrategy: localStrategy
+}

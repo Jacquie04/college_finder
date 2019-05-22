@@ -17,6 +17,7 @@ import CustomInput from "../../assets/components/CustomInput/CustomInput.jsx";
 import loginPageStyle from "../../assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "../../assets/img/college2.jpg";
+import { defaultBoxShadow } from "../../assets/jss/material-kit-react.jsx";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -44,6 +45,8 @@ class LoginPage extends React.Component {
 
   handleLogin = event => {
     event.preventDefault();
+
+    // debugger;
     axios.post("/api/login", this.state).then(res => {
       this.props.setUser(res);
     });
@@ -55,6 +58,10 @@ class LoginPage extends React.Component {
     const name = target && target.name;
     const value = target && target.value;
 
+    // debugger;
+
+    console.log('handleInputChange');
+    console.log(name, value);
     this.setState({
       [name]: value
     });
@@ -90,13 +97,16 @@ class LoginPage extends React.Component {
                     </CardHeader>
                     <p className={classes.divider}>Or Sign Up</p>
                     <CardBody>
+                      {/* value={this.state.email} */}
                       <CustomInput
                         labelText="Email..."
                         id="email"
-                        type="text"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.handleInputChange}
+                        inputProps={{
+                          type: "text",
+                          name: "email",
+                          onChange: this.handleInputChange,
+                          value: this.state.email
+                        }}
                         formControlProps={{
                           fullWidth: true
                         }}
@@ -105,11 +115,11 @@ class LoginPage extends React.Component {
                         labelText="Password"
                         id="pass"
                         inputProps={{
-                          inputType: "password"
+                          inputType: "password",
+                          name: "password",
+                          value: this.state.password,
+                          onChange: this.handleInputChange
                         }}
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleInputChange}
                         formControlProps={{
                           fullWidth: true
                         }}

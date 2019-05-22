@@ -1,5 +1,5 @@
 var db = require("../models");
-var passport = require("../config/passport");
+var passport = require("passport");
 const router = require("express").Router();
 
 
@@ -33,8 +33,11 @@ router.post("/api/signup", function(req, res) {
             return next(err);
           }
 
+          console.log('hey from signup success');
+
+          res.json({id: req.user && req.user.id})
           //   res.redirect(307, "/api/login");
-          res.json({ nextRoute: "/members" });
+          //   res.json({id: req.user.id});
         })
         .catch(function(err) {
           console.log(err);
@@ -46,9 +49,16 @@ router.post("/api/signup", function(req, res) {
 });
   //
   // Route for logging user out
-  router.get("/logout", function(req, res) {
+  router.get("/api/logout", function(req, res) {
     req.logout();
-    res.redirect("/");
+    req.session.save((err) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.json({user: null});
+    })
+    
   });
   //
   // Route for getting some data about our user to be used client side.

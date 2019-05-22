@@ -259,6 +259,7 @@ class RegistrationPage extends React.Component {
 
   handleRegister = event => {
     event.preventDefault();
+    // debugger;
     axios.post("/api/signup", this.state).then(res => {
       this.props.setUser(res);
     });

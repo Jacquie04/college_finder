@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Router, Redirect, Route, Switch } from "react-router-dom";
+import {  Redirect, Route, Switch } from "react-router-dom";
 // import LandingPage from "./views/LandingPage";  <Route exact path="/home" component={LandingPage} />
 import Login from "./views/LoginPage/LoginPage";
-import Register from "./views/ProfilePage/ProfilePage"; 
-import Home from "./views/ProfilePage/ProfilePage"; 
+import Register from "./views/RegistrationPage/RegistrationPage"; 
+import Home from "./views/LandingPage/LandingPage"; 
+import Profile from "./views/ProfilePage/ProfilePage";
 
 import "./App.css";
 import axios from "axios";
 
 function PrivateRoute({ user, component: Component, ...rest }) {
-  //debugger;
+  // debugger;
   return (
     <Route {...rest}
       render={props =>
@@ -18,7 +19,7 @@ function PrivateRoute({ user, component: Component, ...rest }) {
         ) : (
           <Redirect
             to={{
-              //we dont have users or password so just change this line to what page you are working on. 
+              
               pathname: "/login",
               state: { from: props.location }
             }}
@@ -36,17 +37,31 @@ class App extends Component {
 
   componentDidMount() {
     axios.get('/api/user')
-      .then(res => {console.log(res);
-         this.setState({ user: res.data.id }, () => {
-           this.props.history.push('/');
-         });
+      .then(res => {
+        if (res.data && res.data.id) {
+          this.setState({ user: res.data.id }, () => {
+            this.props.history.push('/profile');
+          });
+        }
       }).catch(err => {
         console.log('no user');
       });
   }
 
+  logout = (ev) => {
+    ev.preventDefault();
+    console.log('are we here?');
+    axios.get('/api/logout')
+      .then(() => {
+        this.setState({
+          user: null
+        }, () => {
+          // debugger;
+          this.props.history.push('/login');
+        });
+      })
+  }
   setUser = (res) => {
-    //debugger;
       this.setState({ user: res.data.id }, () => {
         this.props.history.push('/home');
       });
@@ -54,13 +69,17 @@ class App extends Component {
 
   render() {
     return (
+      <div>
+
       <Switch>
         <Route path="/login" render={(props) => <Login {...props} setUser={this.setUser} /> } />
-        <Route path="/register" component={Register} setUser={this.setUser} />
+        <Route path="/signup" render={(props) => <Register {...props} setUser={this.setUser} /> } />
+        <PrivateRoute path="/profile" exact component={Profile}  user={this.state.user} />
         <PrivateRoute path="/home" exact component={Home} user={this.state.user} />
-        <Route render={() => <Redirect to="/login" />} />
+        <Route render={() => <Redirect to="/login" />} /> 
       
-      </Switch>
+      </Switch>      <button onClick={this.logout} style={{zIndex: 9999999}}> Log me out </button>
+      </div>
     );
   }
 }

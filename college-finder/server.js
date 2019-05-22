@@ -5,7 +5,8 @@ const bodyParser = require("body-parser")
 const PORT = process.env.PORT || 3001;
 const app = express();
 var db = require("./models");
-var passport = require("./config/passport");
+var passport = require('passport');
+var initPassport = require("./config/passport");
 var session = require("express-session");
 var LocalStrategy = require("passport-local").Strategy;
 
@@ -30,11 +31,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //setup sessions middleware
 app.use(session({ secret: "eating salad in 2019", resave: true, saveUninitialized: true
-}));
+})); 
 app.use(passport.initialize());
 app.use(passport.session());
-
-
+console.log('hey there');
+passport.use(initPassport.localStrategy);
+passport.serializeUser(initPassport.serializeUser);
+passport.deserializeUser(initPassport.deserializeUser);
 //Handles routes. Will serve static react page if /api/x not utilized
 app.use(routes);
 
