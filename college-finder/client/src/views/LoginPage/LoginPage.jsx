@@ -48,6 +48,7 @@ class LoginPage extends React.Component {
 
     // debugger;
     axios.post("/api/login", this.state).then(res => {
+      console.log(res, 'in login post')
       this.props.setUser(res);
     });
     console.log(this.state);

@@ -2,6 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 const authRoutes = require("./auth-routes");
+const guardedRoutes = require('./guardedRoutes');
 
 const ensureLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated || !req.isAuthenticated()) {
@@ -14,6 +15,7 @@ const ensureLoggedIn = (req, res, next) => {
 
 // API Routes
 router.use(authRoutes);
+router.use(guardedRoutes);
 // router.use("/api", ensureLoggedIn, apiRoutes);
 router.use("/api", apiRoutes);
 

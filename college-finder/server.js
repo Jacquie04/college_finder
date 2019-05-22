@@ -32,12 +32,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //setup sessions middleware
 app.use(session({ secret: "eating salad in 2019", resave: true, saveUninitialized: true
 })); 
+
+passport.use(initPassport.localStrategy);
+
+passport.serializeUser( (user, done) => {
+  var sessionUser = { _id: user._id, name: user.name, email: user.email, roles: user.roles }
+  console.log('session user', sessionUser)
+  done(null, sessionUser)
+})
+
+passport.deserializeUser( (sessionUser, done) => {
+  done(null, sessionUser)
+})
+
 app.use(passport.initialize());
 app.use(passport.session());
-console.log('hey there');
-passport.use(initPassport.localStrategy);
-passport.serializeUser(initPassport.serializeUser);
-passport.deserializeUser(initPassport.deserializeUser);
+// passport.serializeUser(initPassport.serializeUser);
+// passport.deserializeUser(initPassport.deserializeUser);
 //Handles routes. Will serve static react page if /api/x not utilized
 app.use(routes);
 

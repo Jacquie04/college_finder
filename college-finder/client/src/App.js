@@ -11,6 +11,7 @@ import axios from "axios";
 
 function PrivateRoute({ user, component: Component, ...rest }) {
   // debugger;
+  console.log(user, 'in private route filter')
   return (
     <Route {...rest}
       render={props =>
@@ -38,8 +39,10 @@ class App extends Component {
   componentDidMount() {
     axios.get('/api/user')
       .then(res => {
+        console.log(res, 'in get user')
         if (res.data && res.data.id) {
           this.setState({ user: res.data.id }, () => {
+            console.log('pushing')
             this.props.history.push('/profile');
           });
         }
