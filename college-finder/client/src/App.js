@@ -84,19 +84,4 @@ class App extends Component {
   }
 }
 
-/*
-const App = () => (
-  <Router>
-    <div>
-      <Switch>
-        <Route exact path="/" component={LoginPage} />
-        <Route exact path="/profile/:id" component={ProfilePage} />
-        <Route exact path="/home" component={LandingPage} />
-        <Route exact path="/signup" component={RegistrationPage} />
-      </Switch>
-    </div>
-  </Router> 
-);
-*/
-
 export default App;
