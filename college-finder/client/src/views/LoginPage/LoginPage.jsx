@@ -1,7 +1,7 @@
 import React from "react";
 
 import withStyles from "@material-ui/core/styles/withStyles";
-
+import { Link } from "react-router-dom";
 //components for login page
 import Header from "../../assets/components/Header/Header.jsx";
 import Footer from "../../assets/components/Footer/Footer.jsx";
@@ -63,7 +63,7 @@ class LoginPage extends React.Component {
                                         </CardHeader>
                                         <p className={classes.divider}>Or Sign Up</p>
                                         <CardBody>
-                                          
+
                                             <CustomInput
                                                 labelText="Email..."
                                                 id="email"
@@ -80,12 +80,12 @@ class LoginPage extends React.Component {
                                             />
                                         </CardBody>
                                         <CardFooter className={classes.cardFooter}>
-                                        <Button simple color="primary" size="lg" href="/home">
+                                            <Link to="/profile/:id " style={{ color: "white", textDecoration: "none" }}> <Button simple color="primary" size="lg">
                                                 Log In
-                        </Button>
-                                            <Button simple color="primary" size="lg" href="/signup">
+                        </Button></Link>
+                                            <Link to="/signup " style={{ color: "white", textDecoration: "none" }}> <Button simple color="primary" size="lg">
                                                 Sign Up!
-                        </Button>
+                        </Button></Link>
                                         </CardFooter>
                                     </form>
                                 </Card>
@@ -100,4 +100,4 @@ class LoginPage extends React.Component {
 };
 
 
-export default withStyles (loginPageStyle)(LoginPage);
+export default withStyles(loginPageStyle)(LoginPage);
