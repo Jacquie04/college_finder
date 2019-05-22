@@ -25,6 +25,9 @@ function CustomInput({ ...props }) {
     success
   } = props;
 
+  //console.log(props)
+  //console.log(inputProps);
+
   const labelClasses = classNames({
     [" " + classes.labelRootError]: error,
     [" " + classes.labelRootSuccess]: success && !error

@@ -6,7 +6,6 @@ router.route("/")
     .get(collegeController.findUsers)
     .post();
 
-
 router.route("/:id")
     .get()
     .put()
