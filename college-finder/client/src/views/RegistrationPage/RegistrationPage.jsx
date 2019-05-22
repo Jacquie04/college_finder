@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import PropTypes from 'prop-types';
@@ -364,18 +364,17 @@ class RegistrationPage extends React.Component {
           ))}
         </TextField>
         <div>
-        <Fab
+        <Link to="/profile/:id"style={{ textDecoration:"none"}}><Fab
           variant="extended"
           size="medium"
           type="submit"
           color='primary'
           aria-label="Add"
           className={classes.margin}
-          href="/profile/:id"
         >
           <NavigationIcon className={classes.extendedIcon} />
           Submit
-        </Fab>
+        </Fab> </Link>
         </div>
       </form>
 

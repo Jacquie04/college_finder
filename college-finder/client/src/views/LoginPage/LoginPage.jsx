@@ -80,10 +80,10 @@ class LoginPage extends React.Component {
                                             />
                                         </CardBody>
                                         <CardFooter className={classes.cardFooter}>
-                                            <Link to="/profile/:id " style={{ color: "white", textDecoration: "none" }}> <Button simple color="primary" size="lg">
+                                            <Link to="/profile/:id" style={{ color: "white", textDecoration: "none" }}> <Button simple color="primary" size="lg">
                                                 Log In
                         </Button></Link>
-                                            <Link to="/signup " style={{ color: "white", textDecoration: "none" }}> <Button simple color="primary" size="lg">
+                                            <Link to="/signup" style={{ color: "white", textDecoration: "none" }}> <Button simple color="primary" size="lg">
                                                 Sign Up!
                         </Button></Link>
                                         </CardFooter>
