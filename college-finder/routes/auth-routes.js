@@ -39,12 +39,12 @@ router.post("/api/signup", function(req, res) {
           //   res.redirect(307, "/api/login");
           //   res.json({id: req.user.id});
         })
-        .catch(function(err) {
-          console.log(err);
-          res.json(err);
-        });
+        
     });
-
+//this one below
+  }).catch(function(err) {
+    console.log(err);
+    res.json(err);
   });
 });
   //

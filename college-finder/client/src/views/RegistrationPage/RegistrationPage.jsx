@@ -304,7 +304,7 @@ class RegistrationPage extends React.Component {
         />
 
         <form
-          onSubmit={this.handleRegister}
+          //onSubmit={this.handleRegister}
           className={classes.container}
           noValidate
           autoComplete="on"
@@ -336,13 +336,16 @@ class RegistrationPage extends React.Component {
             id="filled-email-input"
             className={classes.textField}
             value={this.state.email}
-            onChange={this.handleInputChange}
-            type="email"
-            name="email"
             autoComplete="email"
             helperText="*Required"
             margin="normal"
             variant="filled"
+            inputProps={{
+              type: "text",
+              name: "email",
+              onChange: this.handleInputChange,
+              value: this.state.email
+            }}
           />
 
           <TextField
@@ -351,11 +354,12 @@ class RegistrationPage extends React.Component {
             label="Password"
             className={classes.textField}
             inputProps={{
-              inputType: "password"
+              inputType: "password",
+              name: "password",
+              value: this.state.password,
+              onChange: this.handleInputChange
             }}
-            name="password"
-            value={this.state.password}
-            onChange={this.handleInputChange}
+            
             type="password"
             autoComplete="current-password"
             margin="normal"
@@ -391,6 +395,7 @@ class RegistrationPage extends React.Component {
               aria-label="Add"
               className={classes.margin}
               href="/profile/:id"
+              onClick={this.handleRegister}
             >
               <NavigationIcon className={classes.extendedIcon} />
               Submit
