@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {  Redirect, Route, Switch } from "react-router-dom";
-// import LandingPage from "./views/LandingPage";  <Route exact path="/home" component={LandingPage} />
 import Login from "./views/LoginPage/LoginPage";
 import Register from "./views/RegistrationPage/RegistrationPage"; 
 import Home from "./views/LandingPage/LandingPage"; 
 import Profile from "./views/ProfilePage/ProfilePage";
-
+import Button from "./assets/components/CustomButtons/Button.jsx";
 import "./App.css";
 import axios from "axios";
 
@@ -86,7 +85,10 @@ class App extends Component {
         <PrivateRoute path="/home" exact component={Home} user={this.state.user} />
         <Route render={() => <Redirect to="/login" />} /> 
       
-      </Switch>      <button onClick={this.logout} style={{zIndex: 9999999}}> Log me out </button>
+      </Switch>      
+      
+      <Button onClick={this.logout} style={{marginLeft:40}}> Log me out </Button>
+
       </div>
     );
   }
