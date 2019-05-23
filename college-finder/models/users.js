@@ -22,6 +22,12 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  User.associate = function (models) {
+    User.hasMany(models.College, {
+        onDelete: "cascade"
+    });
+};
+
   //Will check if inputed and stored passpords can be compared.
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
