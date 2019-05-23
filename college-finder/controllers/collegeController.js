@@ -2,7 +2,9 @@ const db = require("../models");
 
 module.exports = {
     findAllColleges: function (req, res) {
-        db.College.findAll({}).then(dbCollege => res.json(dbCollege));
+        db.College.findAll({ where: {UserId: req.params.id} }).then(dbCollege => res.json(dbCollege));
+        console.log(req);
+        console.log(dbCollege);
     },
 
     findOneCollege: function(req, res) {

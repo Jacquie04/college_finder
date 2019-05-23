@@ -84,6 +84,7 @@ class App extends Component {
         <Route path="/signup" render={(props) => <Register {...props} setUser={this.setUser} /> } />
         <PrivateRoute path="/profile" exact component={Profile}  user={this.state.user} />
         <PrivateRoute path="/home" exact component={Home} user={this.state.user} />
+        <PrivateRoute path="*" exact component={Home} user={this.state.user} />
         <Route render={() => <Redirect to="/login" />} /> 
       
       </Switch>      <button onClick={this.logout} style={{zIndex: 9999999}}> Log me out </button>
