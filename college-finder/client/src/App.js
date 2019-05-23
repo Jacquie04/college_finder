@@ -33,7 +33,7 @@ function PrivateRoute({ user, component: Component, ...rest }) {
 
 class App extends Component {
   state = {
-    user: null
+    user: window.localStorage.getItem("user")
   };
 
   componentDidMount() {
@@ -61,14 +61,19 @@ class App extends Component {
         }, () => {
           // debugger;
           this.props.history.push('/login');
-        });
-      })
+        }
+        );
+      });
+
+      window.localStorage.clear();
   }
   setUser = (res) => {
       this.setState({ user: res.data.id }, () => {
         this.props.history.push('/home');
       });
-  } 
+
+      window.localStorage.setItem("user", res.data.id)
+  };
 
   render() {
     return (
