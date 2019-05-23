@@ -56,6 +56,12 @@ const styles = theme => ({
 
 class SearchSection extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePost = this.handlePost.bind(this);
+}
+
   state = {
     stateData: "",
     bachelorProgramData: "",
@@ -169,6 +175,11 @@ class SearchSection extends React.Component {
 
   }
 
+  handlePost = (id) => {
+    console.log("hello from save button");
+    console.log(id);
+  }
+
   render() {
 
     const { classes, ...rest } = this.props;
@@ -260,7 +271,7 @@ class SearchSection extends React.Component {
             <ListSubheader component="div">College Lists Based on Your Search Criteria</ListSubheader>
           </GridListTile>
 
-          {this.state.colleges.map(function (college) {
+          {this.state.colleges.map((college, i) => {
             return (
               <GridListTile key={college["school.name"]} style={{ height: '300px', width: '400px' }}>
                 <img alt="college" src={image1} />
@@ -271,7 +282,12 @@ class SearchSection extends React.Component {
                   <br></br> Out of State Cost: {college["latest.cost.tuition.out_of_state"]}
                     </span>}
                   actionIcon={
-                    <IconButton className={classes.icon}>
+                    <IconButton 
+                      className={classes.icon}
+                      key={i}
+                      id={i}
+                      onClick={() => this.handlePost(college.id)}
+                    >
                     <MaterialIcon icon="turned_in" color={colorPalette.grey._50}/>
                     </IconButton>
                   }
