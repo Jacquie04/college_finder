@@ -35,4 +35,3 @@ return College;
 
 };
 
-//to whomever is reading this -- Don't forget you have to create the SQL database 'collegefinder' before your server will not error out

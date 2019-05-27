@@ -9,8 +9,7 @@ import "./App.css";
 import axios from "axios";
 
 function PrivateRoute({ user, component: Component, ...rest }) {
-  // debugger;
-  console.log(user, 'in private route filter')
+
   return (
     <Route {...rest}
       render={props =>
@@ -38,10 +37,8 @@ class App extends Component {
   componentDidMount() {
     axios.get('/api/user')
       .then(res => {
-        console.log(res, 'in get user')
         if (res.data && res.data.id) {
           this.setState({ user: res.data.id }, () => {
-            console.log('pushing')
             this.props.history.push('/profile');
           });
         }
@@ -52,13 +49,11 @@ class App extends Component {
 
   logout = (ev) => {
     ev.preventDefault();
-    console.log('are we here?');
     axios.get('/api/logout')
       .then(() => {
         this.setState({
           user: null
         }, () => {
-          // debugger;
           this.props.history.push('/login');
         }
         );

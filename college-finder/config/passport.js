@@ -12,7 +12,6 @@ var localStrategy = new LocalStrategy({
 },
   function(email, password, done) {
 
-    console.log('hi');
     // When a user tries to sign in this code runs
     db.User.findOne({
       where: {
@@ -38,13 +37,13 @@ var localStrategy = new LocalStrategy({
 );
 //code required by Sequelize to ensure password encription.
 var serializeUser = function(user, cb) {
-  console.log('hi from serialize')
+  console.log('Serialze User hit')
   cb(null, user);
 };
 
 
 var deserializeUser = function(id, cb) {
-  console.log('hi from deserializeUser');
+  console.log('Deserialize User hit');
   cb(null, id);
 };
 
