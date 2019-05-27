@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import withStyles from "@material-ui/core/styles/withStyles";
-
+import Parallax from "../../assets/components/Parallax/Parallax.jsx";
 import PropTypes from "prop-types";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
@@ -15,8 +15,8 @@ import Fab from "@material-ui/core/Fab";
 import Header from "../../assets/components/Header/Header.jsx";
 //import HeaderLinks from "../../assets/components/Header/HeaderLinks.jsx";
 import Footer from "../../assets/components/Footer/Footer.jsx";
-//import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
-//import GridItem from "../../assets/components/Grid/GridItem.jsx";
+import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
+import GridItem from "../../assets/components/Grid/GridItem.jsx";
 //import Button from "../../assets/components/CustomButtons/Button.jsx";
 //import CustomInput from "../../assets/components/CustomInput/CustomInput.jsx";
 
@@ -302,7 +302,15 @@ class RegistrationPage extends React.Component {
           }}
           {...rest}
         />
-
+        <Parallax filter image={require("../../assets/img/students3.jpg")}>
+          <div className={classes.container}>
+            <GridContainer>
+              <GridItem >
+                <h1 className={classes.title} style={{ color: "white", marginLeft: 100 }}>Register to Personalize Your Search.</h1>
+              </GridItem>
+            </GridContainer>
+          </div>
+        </Parallax>
         <form
           //onSubmit={this.handleRegister}
           className={classes.container}
@@ -310,23 +318,21 @@ class RegistrationPage extends React.Component {
           autoComplete="on"
         >
           <TextField
-            required
             id="filled-firstName"
+            label="First Name"
             className={classes.textField}
             value={this.state.firstName}
             onChange={this.handleChange("firstName")}
-            helperText="*Required"
             margin="normal"
             variant="filled"
           />
 
           <TextField
-            required
             id="filled-lastName"
+            label="Last Name"
             className={classes.textField}
             value={this.state.lastName}
             onChange={this.handleChange("lastName")}
-            helperText="*Required"
             margin="normal"
             variant="filled"
           />
@@ -334,6 +340,7 @@ class RegistrationPage extends React.Component {
           <TextField
             required
             id="filled-email-input"
+            label="Email"
             className={classes.textField}
             value={this.state.email}
             autoComplete="email"
@@ -359,8 +366,9 @@ class RegistrationPage extends React.Component {
               value: this.state.password,
               onChange: this.handleInputChange
             }}
-            
+
             type="password"
+            helperText="*Required"
             autoComplete="current-password"
             margin="normal"
             variant="filled"

@@ -95,7 +95,6 @@ class LoginPage extends React.Component {
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>Login</h4>
                     </CardHeader>
-                    <p className={classes.divider}>Or Sign Up</p>
                     <CardBody>
                       {/* value={this.state.email} */}
                       <CustomInput
