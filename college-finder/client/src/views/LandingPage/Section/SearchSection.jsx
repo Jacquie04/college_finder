@@ -7,15 +7,18 @@ import TextField from '@material-ui/core/TextField';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import Fab from '@material-ui/core/Fab';
 import PropTypes from 'prop-types';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import Button from '@material-ui/core/Button';
+import GridItem from "../../../assets/components/Grid/GridItem.jsx";
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 //import tileData from './tileData';
 import stateData from '../../../stateData.json';
 import bachelorProgramData from '../../../bachelorProgramData.json';
-import image1 from '../../../assets/img/college5.jpg';
 //import searchStyle from "../../../assets/jss/material-kit-react/views/landingPageSections/searchStyle.jsx";
 
 
@@ -29,7 +32,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: 900,
+    width: 1000,
     height: 1000
   },
   gridListTile: {
@@ -38,7 +41,8 @@ const styles = theme => ({
   },
   textField: {
     display: 'flex',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around', 
+    marginBottom: 0
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -49,6 +53,7 @@ const styles = theme => ({
   },
   margin: {
     marginTop: 30,
+    marginBottom: 0
   },
 
 });
@@ -188,7 +193,11 @@ class SearchSection extends React.Component {
       <div className={classes.root}>
         <GridList cellHeight={'auto'} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-            <ListSubheader className={classes.listSubheader} component="div">The search begins here!</ListSubheader>
+          <div>
+          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center", marginTop: '40px', marginBottom: '30px' }}>
+            You're One Step Away from Finding Your Dream School!
+          </Typography>
+          </div>
 
             <TextField
               id="filled-select-states"
@@ -267,32 +276,47 @@ class SearchSection extends React.Component {
         </Fab>
 
           </GridListTile>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-            <ListSubheader component="div">College Lists Based on Your Search Criteria</ListSubheader>
-          </GridListTile>
-
+          <div>
+          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center" }}>
+            College Lists Based on Your Search Criteria
+          </Typography>
+          </div>
           {this.state.colleges.map((college, i) => {
             return (
-              <GridListTile key={college["school.name"]} style={{ height: '300px', width: '400px' }}>
-                <img alt="college" src={image1} />
-                <GridListTileBar style={{height: '100px', wordWrap: 'break-word'}}
-                  title={<span> {college["school.name"]} </span>}
-                  subtitle= {<span> Average SAT Score: { college["latest.admissions.sat_scores.average.overall"]} <br></br>
-                  State: {college["school.state"]} <br></br> In State Cost: {college["latest.cost.tuition.in_state"]}
-                  <br></br> Out of State Cost: {college["latest.cost.tuition.out_of_state"]}
-                    </span>}
-                  actionIcon={
-                    <IconButton 
-                      className={classes.icon}
-                      key={i}
-                      id={i}
-                      onClick={() => this.handlePost(college.id)}
-                    >
-                    <MaterialIcon icon="turned_in" color={colorPalette.grey._50}/>
-                    </IconButton>
-                  }
-                />
-              </GridListTile>
+              <GridItem> 
+              <div className={classes.container}>
+                  <Card className={classes.card}>
+            <CardContent key={college["school.name"]}>
+              <Typography variant="h5" component="h2">
+                School Name: {college["school.name"]}
+              </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+               
+              </Typography>
+              <Typography component="p">
+                State: {college["school.state"]}
+                <br />
+                Average SAT Score: { college["latest.admissions.sat_scores.average.overall"]} 
+                <br />
+                In State Cost: {college["latest.cost.tuition.in_state"]}
+                <br />
+                Out of State Cost: {college["latest.cost.tuition.out_of_state"]}
+              </Typography>
+            </CardContent>
+            <CardActions >
+                <IconButton 
+                  className={classes.icon}
+                  key={i}
+                  id={i}
+                  onClick={() => this.handlePost(college.id)}
+                >
+                <MaterialIcon icon="turned_in_not" color={colorPalette.teal._400}/>
+                </IconButton>
+              <Button size="small">Link to School Site</Button>
+            </CardActions>
+          </Card>
+          </div>
+              </GridItem>
             )
           })}
 

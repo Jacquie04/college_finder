@@ -50,6 +50,9 @@ app.use(passport.session());
 // passport.serializeUser(initPassport.serializeUser);
 // passport.deserializeUser(initPassport.deserializeUser);
 //Handles routes. Will serve static react page if /api/x not utilized
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+};
 app.use(routes);
 
 // Remaining requests send you to the React app

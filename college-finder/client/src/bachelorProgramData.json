@@ -1,5 +1,10 @@
 [
     {
+        "id": "",
+        "program": "",
+        "query":""
+    },
+    {
         "id": 1,
         "program": "Agriculture",
         "query": "latest.academics.program.bachelors.agriculture"
