@@ -45,9 +45,7 @@ class LoginPage extends React.Component {
   handleLogin = event => {
     event.preventDefault();
 
-    // debugger;
     axios.post("/api/login", this.state).then(res => {
-      console.log(res, 'in login post')
       this.props.setUser(res);
     });
     console.log(this.state);
@@ -58,9 +56,6 @@ class LoginPage extends React.Component {
     const name = target && target.name;
     const value = target && target.value;
 
-    // debugger;
-
-    console.log('handleInputChange');
     console.log(name, value);
     this.setState({
       [name]: value
@@ -95,7 +90,6 @@ class LoginPage extends React.Component {
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>Login</h4>
                     </CardHeader>
-                    <p className={classes.divider}>Or Sign Up</p>
                     <CardBody>
                       {/* value={this.state.email} */}
                       <CustomInput
