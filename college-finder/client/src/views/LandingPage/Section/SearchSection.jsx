@@ -73,7 +73,8 @@ class SearchSection extends React.Component {
     satScore: "",
     schoolName: "",
     colleges: [],
-    error: null
+    error: null,
+    user: window.localStorage.getItem("user")
   };
 
   handleChange = satScore => event => {
@@ -181,13 +182,18 @@ class SearchSection extends React.Component {
   }
 
   handlePost = (event) => {
-    
-    event.preventDefault();
-    console.log("Save Button " + event.currentTarget.id + " has been clicked.");
 
-    var targetID = event.currentTarget.id;
+    event.preventDefault();
+
+    var user = this.state.user;
+    var targetID = event.currentTarget.id
+
+    console.log("Save Button " + targetID + " has been clicked by User ID " + user);
+
     console.log(this.state.colleges[targetID]);
 
+    axios.post("api/colleges", this.state.colleges[targetID])
+      .then(console.log("college pushed"));
   }
 
   render() {

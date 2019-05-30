@@ -12,6 +12,7 @@ module.exports = {
     },
 
     addCollege: function (req, res) {
+        console.log("hello from add college");
         db.College.create(req.body).then(function(dbCollege) {
             res.json(dbCollege);
         })
