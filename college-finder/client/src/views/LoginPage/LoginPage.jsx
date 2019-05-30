@@ -19,13 +19,7 @@ import { Link } from "react-router-dom";
 import image from "../../assets/img/college2.jpg";
 
 class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
-    // we use this to make the card to appear after the page has been rendered
-    //    this.state = {
-    //      cardAnimaton: "cardHidden"
-    //    };
-  }
+
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     // setTimeout(

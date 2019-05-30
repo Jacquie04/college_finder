@@ -17,6 +17,12 @@ module.exports = {
         })
     },
 
+    findByUser: function (req, res) {
+        db.College.findAll({ where: {UserId: req.params.id} }).then(dbCollege => res.json(dbCollege));
+        console.log(req);
+        console.log(dbCollege);
+    },
+
     deleteCollege: function (req, res) {
         db.College.destroy({ where: {id: req.params.id} }).then(console.log("college deleted"));
     },

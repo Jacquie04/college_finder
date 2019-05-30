@@ -127,7 +127,7 @@ class SearchSection extends React.Component {
     }
 
     else {
-      console.log("No school searched for");
+      console.log("No school searched for.");
     }
 
     //grabs Bachelors Program from list
@@ -139,7 +139,7 @@ class SearchSection extends React.Component {
     }
 
     else {
-      console.log("No bachelors program searched for");
+      console.log("No bachelors program searched for.");
     }
 
     //grabs user selected State
@@ -151,7 +151,7 @@ class SearchSection extends React.Component {
     }
 
     else {
-      console.log("No State searched for");
+      console.log("No State searched for.");
     }
 
     //grabs user SAT input
@@ -163,7 +163,7 @@ class SearchSection extends React.Component {
     }
 
     else {
-      console.log("No SAT score provided");
+      console.log("No SAT score provided.");
     }
 
     console.log(queryString);
