@@ -180,9 +180,14 @@ class SearchSection extends React.Component {
 
   }
 
-  handlePost = (id) => {
-    console.log("hello from save button");
-    console.log(id);
+  handlePost = (event) => {
+    
+    event.preventDefault();
+    console.log("Save Button " + event.currentTarget.id + " has been clicked.");
+
+    var targetID = event.currentTarget.id;
+    console.log(this.state.colleges[targetID]);
+
   }
 
   render() {
@@ -308,7 +313,7 @@ class SearchSection extends React.Component {
                   className={classes.icon}
                   key={i}
                   id={i}
-                  onClick={() => this.handlePost(college.id)}
+                  onClick={(event) => this.handlePost(event)}
                 >
                 <MaterialIcon icon="turned_in_not" color={colorPalette.teal._400}/>
                 </IconButton>
