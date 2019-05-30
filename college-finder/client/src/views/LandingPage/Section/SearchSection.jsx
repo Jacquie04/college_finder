@@ -192,6 +192,9 @@ class SearchSection extends React.Component {
 
     console.log(this.state.colleges[targetID]);
 
+    //post request should be something like axios.post("api/colleges" + user, this.state.colleges[targetID]). You'll notice as is you get a sequelize rejection. But if you add +user,
+    //the route does not seem to hit.
+    
     axios.post("api/colleges", this.state.colleges[targetID])
       .then(console.log("college pushed"));
   }
