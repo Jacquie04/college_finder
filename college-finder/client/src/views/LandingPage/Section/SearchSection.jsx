@@ -186,17 +186,37 @@ class SearchSection extends React.Component {
     event.preventDefault();
 
     var user = this.state.user;
-    var targetID = event.currentTarget.id
+    var targetId = event.currentTarget.id
 
-    console.log("Save Button " + targetID + " has been clicked by User ID " + user);
-
-    console.log(this.state.colleges[targetID]);
-
-    //post request should be something like axios.post("api/colleges" + user, this.state.colleges[targetID]). You'll notice as is you get a sequelize rejection. But if you add +user,
+    console.log("Save Button " + targetId + " has been clicked by User ID " + user);
+    console.log("Expecting to see:")
+    console.log(this.state.colleges[targetId]);
+   
+    //post request should be something like axios.post("api/colleges" + user, this.state.colleges[targetId]). You'll notice as is you get a sequelize rejection. But if you add +user,
     //the route does not seem to hit.
     
-    axios.post("api/colleges", this.state.colleges[targetID])
-      .then(console.log("college pushed"));
+    axios.post("api/colleges", {
+      name: this.state.colleges[targetId]["school.name"],
+      alias: this.state.colleges[targetId]["school.alias"],
+      city: this.state.colleges[targetId]["school.city"],
+      zip: this.state.colleges[targetId]["school.zip"],
+      sat_score: this.state.colleges[targetId]["latest.admissions.sat_scores.average.overall"],
+      admission_rate: this.state.colleges[targetId]["latest.admissions.admission_rate.overall"],
+      population: this.state.colleges[targetId]["latest.student.size"],
+      tuition_out_of_state: this.state.colleges[targetId]["latest.cost.tuition.out_of_state"],
+      tuition_in_state: this.state.colleges[targetId]["latest.cost.tuition.in_state"],
+      cost_average_annual: this.state.colleges[targetId]["latest.cost.attendance.academic_year"],
+      loan_average: this.state.colleges[targetId]["latest.aid.loan_principal"],
+      UserId: user,
+
+    })
+      .then(function (res) {
+        console.log("What we actually get:")
+        console.log(res.data);
+      })
+        .catch(function (err) {
+          console.log(err);
+        });
   }
 
   render() {
