@@ -12,7 +12,7 @@ module.exports = {
     },
 
     addCollege: function (req, res) {
-        console.log("hello from add college");
+        console.log("College added to database.");
         db.College.create(req.body).then(function(dbCollege) {
             res.json(dbCollege);
         })
