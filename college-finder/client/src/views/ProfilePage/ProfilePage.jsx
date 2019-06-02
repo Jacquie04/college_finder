@@ -67,7 +67,7 @@ class ProfilePage extends React.Component {
 
   loadData = () => {
 
-    let user = this.state.user
+    let user = this.state.user;
 
     Axios.get("api/colleges/" + user)
       //.then(response => console.log(response.data.results))
@@ -83,7 +83,7 @@ class ProfilePage extends React.Component {
 
   componentDidMount() {
     this.loadData();
-  }
+  };
 
   render() {
     const { classes, ...rest } = this.props;
