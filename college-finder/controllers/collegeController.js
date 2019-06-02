@@ -2,13 +2,14 @@ const db = require("../models");
 
 module.exports = {
     findAllColleges: function (req, res) {
+        console.log("hello from find all colleges (collegeController.js");
+        console.log(req.params);
         db.College.findAll({ where: {UserId: req.params.id} }).then(dbCollege => res.json(dbCollege));
-        console.log(req);
-        console.log(dbCollege);
+        console.log(req.params);
     },
 
     findOneCollege: function(req, res) {
-        db.College.findOne({ where: {id: req.params.id} }).then(dbCollege => res.json(dbCollege));
+        db.College.findOne( { where: {id: req.params.id} }).then(dbCollege => res.json(dbCollege));
     },
 
     addCollege: function (req, res) {

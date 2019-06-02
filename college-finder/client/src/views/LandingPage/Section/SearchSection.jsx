@@ -185,16 +185,13 @@ class SearchSection extends React.Component {
 
     event.preventDefault();
 
-    var user = this.state.user;
-    var targetId = event.currentTarget.id
+    let user = this.state.user;
+    let targetId = event.currentTarget.id
 
     console.log("Save Button " + targetId + " has been clicked by User ID " + user);
     console.log("Expecting to see:")
     console.log(this.state.colleges[targetId]);
    
-    //post request should be something like axios.post("api/colleges" + user, this.state.colleges[targetId]). You'll notice as is you get a sequelize rejection. But if you add +user,
-    //the route does not seem to hit.
-    
     axios.post("api/colleges", {
       name: this.state.colleges[targetId]["school.name"],
       alias: this.state.colleges[targetId]["school.alias"],

@@ -27,8 +27,8 @@ function HeaderLinks({ ...props }) {
         </Button> </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-       <Link to="/profile/:id" style={{color:"white", textDecoration:"none"}}> <Button
-          Link to="/profile/:id"
+       <Link to="/profile" style={{color:"white", textDecoration:"none"}}> <Button
+          Link to="/profile"
           color="transparent"
           target="_blank"
           className={classes.navLink}
