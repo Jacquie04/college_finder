@@ -2,10 +2,8 @@ const db = require("../models");
 
 module.exports = {
     findAllColleges: function (req, res) {
-        console.log("hello from find all colleges (collegeController.js");
-        console.log(req.params);
+        console.log("hello from find all");
         db.College.findAll({ where: {UserId: req.params.id} }).then(dbCollege => res.json(dbCollege));
-        console.log(req.params);
     },
 
     findOneCollege: function(req, res) {
@@ -20,9 +18,8 @@ module.exports = {
     },
 
     findByUser: function (req, res) {
+        console.log("hello from find by");
         db.College.findAll({ where: {UserId: req.params.id} }).then(dbCollege => res.json(dbCollege));
-        console.log(req);
-        console.log(dbCollege);
     },
 
     deleteCollege: function (req, res) {

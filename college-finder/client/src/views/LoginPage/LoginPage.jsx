@@ -50,7 +50,6 @@ class LoginPage extends React.Component {
     const name = target && target.name;
     const value = target && target.value;
 
-    console.log(name, value);
     this.setState({
       [name]: value
     });

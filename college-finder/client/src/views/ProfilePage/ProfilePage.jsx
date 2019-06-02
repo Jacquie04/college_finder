@@ -72,7 +72,6 @@ class ProfilePage extends React.Component {
     Axios.get("api/colleges/" + user)
       //.then(response => console.log(response.data.results))
       .then(response => {
-        console.log(response.data);
         this.setState({
           colleges: response.data
         });
