@@ -3,7 +3,7 @@ module.exports = function (sequelize, DataTypes) {
         name: DataTypes.STRING,
         alias: DataTypes.STRING,
         city: DataTypes.STRING,
-        zip: DataTypes.INTEGER,
+        zip: DataTypes.STRING,
         sat_score: DataTypes.INTEGER,
         admission_rate: DataTypes.FLOAT,
         population: DataTypes.INTEGER,
