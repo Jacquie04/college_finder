@@ -105,8 +105,8 @@ class SearchSection extends React.Component {
   handleSubmit = () => {
 
     let queryString = "https://api.data.gov/ed/collegescorecard/v1/schools?";
-    var api = "&api_key=tsrb2IQI7sNv5A1HSBCH6lshc45rsbuPpDxsezrl";
-    var queryFields = "&_fields=school.name,school.alias,school.city,school.state,school.zip,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.tuition.in_state,latest.cost.tuition.out_of_state,latest.aid.loan_principal,latest.aid.median_debt.completers.overall,school.ownership";
+    const api = "&api_key=tsrb2IQI7sNv5A1HSBCH6lshc45rsbuPpDxsezrl";
+    const queryFields = "&_fields=school.name,school.alias,school.city,school.state,school.zip,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.tuition.in_state,latest.cost.tuition.out_of_state,latest.aid.loan_principal,latest.aid.median_debt.completers.overall,school.ownership";
 
 
     console.log("---------------------------------------");
@@ -115,14 +115,14 @@ class SearchSection extends React.Component {
     //grabs user input from College Search Input
     if (this.state.schoolName.length > 6) {
       let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
-      var fullSchoolString = "school.name=" + nameOfSchool;
+      let fullSchoolString = "school.name=" + nameOfSchool;
       queryString += fullSchoolString;
       console.log(nameOfSchool);
     }
 
     else if (this.state.schoolName.length >= 1) {
       let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
-      var fullAliasString = "school.alias=" + nameOfSchool;
+      let fullAliasString = "school.alias=" + nameOfSchool;
       queryString += fullAliasString;
       console.log(nameOfSchool);
     }
