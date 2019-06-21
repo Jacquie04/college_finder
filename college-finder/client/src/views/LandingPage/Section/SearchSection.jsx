@@ -1,24 +1,18 @@
 import React from "react";
 import axios from "axios";
 import withStyles from "@material-ui/core/styles/withStyles";
-import MaterialIcon, {colorPalette} from 'material-icons-react';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import Fab from '@material-ui/core/Fab';
 import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import Button from '@material-ui/core/Button';
-import GridItem from "../../../assets/components/Grid/GridItem.jsx";
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 //import tileData from './tileData';
 import stateData from '../../../stateData.json';
 import bachelorProgramData from '../../../bachelorProgramData.json';
+import DialogBox from "./DialogBox/DialogBox.jsx";
 //import searchStyle from "../../../assets/jss/material-kit-react/views/landingPageSections/searchStyle.jsx";
 
 
@@ -32,8 +26,8 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: 1000,
-    height: 1000
+    width: 1200,
+    height: 1000,
   },
   gridListTile: {
     height: 400,
@@ -53,7 +47,7 @@ const styles = theme => ({
   },
   margin: {
     marginTop: 30,
-    marginBottom: 0
+    marginBottom: 40
   },
 
 });
@@ -190,11 +184,11 @@ class SearchSection extends React.Component {
     const { classes, ...rest } = this.props;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root}> 
         <GridList cellHeight={'auto'} className={classes.gridList}>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+         <GridListTile key="Subheader" cols={2} style={{ height: 'auto', alignItems: 'center' }} >
           <div>
-          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center", marginTop: '40px', marginBottom: '30px' }}>
+          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center", marginTop: '40px', marginBottom: '30px', marginLeft: '100px' }}>
             You're One Step Away from Finding Your Dream School!
           </Typography>
           </div>
@@ -276,49 +270,8 @@ class SearchSection extends React.Component {
         </Fab>
 
           </GridListTile>
-          <div>
-          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center" }}>
-            College Lists Based on Your Search Criteria
-          </Typography>
-          </div>
-          {this.state.colleges.map((college, i) => {
-            return (
-              <GridItem> 
-              <div className={classes.container}>
-                  <Card className={classes.card}>
-            <CardContent key={college["school.name"]}>
-              <Typography variant="h5" component="h2">
-                School Name: {college["school.name"]}
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-               
-              </Typography>
-              <Typography component="p">
-                State: {college["school.state"]}
-                <br />
-                Average SAT Score: { college["latest.admissions.sat_scores.average.overall"]} 
-                <br />
-                In State Cost: {college["latest.cost.tuition.in_state"]}
-                <br />
-                Out of State Cost: {college["latest.cost.tuition.out_of_state"]}
-              </Typography>
-            </CardContent>
-            <CardActions >
-                <IconButton 
-                  className={classes.icon}
-                  key={i}
-                  id={i}
-                  onClick={() => this.handlePost(college.id)}
-                >
-                <MaterialIcon icon="turned_in_not" color={colorPalette.teal._400}/>
-                </IconButton>
-              <Button size="small">Link to School Site</Button>
-            </CardActions>
-          </Card>
-          </div>
-              </GridItem>
-            )
-          })}
+          
+        <DialogBox />
 
         </GridList>
       </div>
