@@ -4,7 +4,6 @@ import Login from "./views/LoginPage/LoginPage";
 import Register from "./views/RegistrationPage/RegistrationPage"; 
 import Home from "./views/LandingPage/LandingPage"; 
 import Profile from "./views/ProfilePage/ProfilePage";
-import Button from "./assets/components/CustomButtons/Button.jsx";
 import "./App.css";
 import axios from "axios";
 
@@ -83,7 +82,6 @@ class App extends Component {
       
       </Switch>      
       
-      <Button onClick={this.logout} style={{marginLeft:40}}> Log me out </Button>
 
       </div>
     );

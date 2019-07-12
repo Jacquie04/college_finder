@@ -6,7 +6,6 @@ import Parallax from "../../assets/components/Parallax/Parallax.jsx";
 import PropTypes from "prop-types";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
-//import Button from '@material-ui/core/Button';
 import NavigationIcon from "@material-ui/icons/Navigation";
 import Fab from "@material-ui/core/Fab";
 //import IconButton from '@material-ui/core/IconButton';
@@ -97,7 +96,8 @@ class RegistrationPage extends React.Component {
         <Header
           absolute
           color="transparent"
-          brand="College Finder"
+          brand="Register to Personalize Your Search."
+          style={{fontSize: 200 }}
           fixed
           changeColorOnScroll={{
             height: 400,
@@ -109,7 +109,6 @@ class RegistrationPage extends React.Component {
           <div className={classes.container}>
             <GridContainer>
               <GridItem >
-                <h1 className={classes.title} style={{ color: "white", marginLeft: 100 }}>Register to Personalize Your Search.</h1>
               </GridItem>
             </GridContainer>
           </div>
