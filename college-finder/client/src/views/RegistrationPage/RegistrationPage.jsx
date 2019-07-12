@@ -19,7 +19,7 @@ import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
 import GridItem from "../../assets/components/Grid/GridItem.jsx";
 //import Button from "../../assets/components/CustomButtons/Button.jsx";
 //import CustomInput from "../../assets/components/CustomInput/CustomInput.jsx";
-
+import stateData from '../../stateData.json';
 //import image from "../../assets/img/college5.jpg";
 
 const styles = theme => ({
@@ -46,208 +46,6 @@ const styles = theme => ({
   }
 });
 
-const locations = [
-  {
-    value: "Alabama",
-    label: "AL"
-  },
-  {
-    value: "Alaska",
-    label: "AK"
-  },
-  {
-    value: "Arizona",
-    label: "AZ"
-  },
-  {
-    value: "Arkansas",
-    label: "AR"
-  },
-  {
-    value: "California",
-    label: "CA"
-  },
-  {
-    value: "Colorado",
-    label: "CO"
-  },
-  {
-    value: "Connecticut",
-    label: "CT"
-  },
-  {
-    value: "Delaware",
-    label: "DE"
-  },
-  {
-    value: "Florida",
-    label: "FL"
-  },
-  {
-    value: "Georgia",
-    label: "GA"
-  },
-  {
-    value: "Hawaii",
-    label: "HI"
-  },
-  {
-    value: "Idaho",
-    label: "ID"
-  },
-  {
-    value: "Illinois",
-    label: "IL"
-  },
-  {
-    value: "Indiana",
-    label: "IN"
-  },
-  {
-    value: "Iowa",
-    label: "IA"
-  },
-  {
-    value: "Kansas",
-    label: "KS"
-  },
-  {
-    value: "Kentucky",
-    label: "KY"
-  },
-  {
-    value: "Louisiana",
-    label: "LA"
-  },
-  {
-    value: "Maine",
-    label: "ME"
-  },
-  {
-    value: "Maryland",
-    label: "MD"
-  },
-  {
-    value: "Massachusetts",
-    label: "MA"
-  },
-  {
-    value: "Michigan",
-    label: "MI"
-  },
-  {
-    value: "Minnesota",
-    label: "MN"
-  },
-  {
-    value: "Mississippi",
-    label: "MS"
-  },
-  {
-    value: "Missouri",
-    label: "MO"
-  },
-  {
-    value: "Montana",
-    label: "MT"
-  },
-  {
-    value: "Nebraska",
-    label: "NE"
-  },
-  {
-    value: "Nevada",
-    label: "NV"
-  },
-  {
-    value: "New Hampshire",
-    label: "NH"
-  },
-  {
-    value: "New Jersey",
-    label: "NJ"
-  },
-  {
-    value: "New Mexico",
-    label: "NM"
-  },
-  {
-    value: "New York",
-    label: "NY"
-  },
-  {
-    value: "North Carolina",
-    label: "NC"
-  },
-  {
-    value: "North Dakota",
-    label: "ND"
-  },
-  {
-    value: "Ohio",
-    label: "OH"
-  },
-  {
-    value: "Oklahoma",
-    label: "OK"
-  },
-  {
-    value: "Oregon",
-    label: "OR"
-  },
-  {
-    value: "Pennsylvania",
-    label: "PA"
-  },
-  {
-    value: "Rhode Island",
-    label: "RI"
-  },
-  {
-    value: "South Carolina",
-    label: "SC"
-  },
-  {
-    value: "South Dakota",
-    label: "SD"
-  },
-  {
-    value: "Tennessee",
-    label: "TN"
-  },
-  {
-    value: "Texas",
-    label: "TX"
-  },
-  {
-    value: "Utah",
-    label: "UT"
-  },
-  {
-    value: "Vermont",
-    label: "VT"
-  },
-  {
-    value: "Virginia",
-    label: "VA"
-  },
-  {
-    value: "Washington",
-    label: "WA"
-  },
-  {
-    value: "West Virginia",
-    label: "WV"
-  },
-  {
-    value: "Wisconsin",
-    label: "WI"
-  },
-  {
-    value: "Wyoming",
-    label: "WY"
-  }
-];
 
 class RegistrationPage extends React.Component {
   state = {
@@ -273,6 +71,12 @@ class RegistrationPage extends React.Component {
   handleChange = lastName => event => {
     this.setState({
       [lastName]: event.target.value
+    });
+  };
+
+  handleChange = stateData => event => {
+    this.setState({
+      [stateData]: event.target.value,
     });
   };
 
@@ -376,8 +180,8 @@ class RegistrationPage extends React.Component {
             id="filled-select-location"
             select
             className={classes.textField}
-            value={this.state.locations}
-            onChange={this.handleChange("locations")}
+            value={this.state.stateData}
+            onChange={this.handleChange("stateData")}
             SelectProps={{
               MenuProps: {
                 className: classes.menu
@@ -387,7 +191,7 @@ class RegistrationPage extends React.Component {
             margin="normal"
             variant="filled"
           >
-            {locations.map(option => (
+            {stateData.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
