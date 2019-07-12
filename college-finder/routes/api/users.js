@@ -7,7 +7,7 @@ router.route("/")
     .post();
 
 router.route("/:id")
-    .get()
+    .get(collegeController.findByUser)
     .put()
     .delete();
 

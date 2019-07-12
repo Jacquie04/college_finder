@@ -73,7 +73,8 @@ class SearchSection extends React.Component {
     satScore: "",
     schoolName: "",
     colleges: [],
-    error: null
+    error: null,
+    user: window.localStorage.getItem("user")
   };
 
   handleChange = satScore => event => {
@@ -104,8 +105,8 @@ class SearchSection extends React.Component {
   handleSubmit = () => {
 
     let queryString = "https://api.data.gov/ed/collegescorecard/v1/schools?";
-    var api = "&api_key=tsrb2IQI7sNv5A1HSBCH6lshc45rsbuPpDxsezrl";
-    var queryFields = "&_fields=school.name,school.alias,school.city,school.state,school.zip,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.tuition.in_state,latest.cost.tuition.out_of_state,latest.aid.loan_principal,latest.aid.median_debt.completers.overall,school.ownership";
+    const api = "&api_key=tsrb2IQI7sNv5A1HSBCH6lshc45rsbuPpDxsezrl";
+    const queryFields = "&_fields=school.name,school.alias,school.city,school.state,school.zip,latest.admissions.admission_rate.overall,latest.admissions.sat_scores.average.overall,latest.student.size,latest.cost.attendance.academic_year,latest.cost.tuition.in_state,latest.cost.tuition.out_of_state,latest.aid.loan_principal,latest.aid.median_debt.completers.overall,school.ownership";
 
 
     console.log("---------------------------------------");
@@ -114,20 +115,20 @@ class SearchSection extends React.Component {
     //grabs user input from College Search Input
     if (this.state.schoolName.length > 6) {
       let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
-      var fullSchoolString = "school.name=" + nameOfSchool;
+      let fullSchoolString = "school.name=" + nameOfSchool;
       queryString += fullSchoolString;
       console.log(nameOfSchool);
     }
 
     else if (this.state.schoolName.length >= 1) {
       let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
-      var fullAliasString = "school.alias=" + nameOfSchool;
+      let fullAliasString = "school.alias=" + nameOfSchool;
       queryString += fullAliasString;
       console.log(nameOfSchool);
     }
 
     else {
-      console.log("No school searched for");
+      console.log("No school searched for.");
     }
 
     //grabs Bachelors Program from list
@@ -139,7 +140,7 @@ class SearchSection extends React.Component {
     }
 
     else {
-      console.log("No bachelors program searched for");
+      console.log("No bachelors program searched for.");
     }
 
     //grabs user selected State
@@ -151,7 +152,7 @@ class SearchSection extends React.Component {
     }
 
     else {
-      console.log("No State searched for");
+      console.log("No State searched for.");
     }
 
     //grabs user SAT input
@@ -163,7 +164,7 @@ class SearchSection extends React.Component {
     }
 
     else {
-      console.log("No SAT score provided");
+      console.log("No SAT score provided.");
     }
 
     console.log(queryString);
@@ -180,9 +181,39 @@ class SearchSection extends React.Component {
 
   }
 
-  handlePost = (id) => {
-    console.log("hello from save button");
-    console.log(id);
+  handlePost = (event) => {
+
+    event.preventDefault();
+
+    let user = this.state.user;
+    let targetId = event.currentTarget.id
+
+    console.log("Save Button " + targetId + " has been clicked by User ID " + user);
+    console.log("Expecting to see:")
+    console.log(this.state.colleges[targetId]);
+   
+    axios.post("api/colleges", {
+      name: this.state.colleges[targetId]["school.name"],
+      alias: this.state.colleges[targetId]["school.alias"],
+      city: this.state.colleges[targetId]["school.city"],
+      zip: this.state.colleges[targetId]["school.zip"],
+      sat_score: this.state.colleges[targetId]["latest.admissions.sat_scores.average.overall"],
+      admission_rate: this.state.colleges[targetId]["latest.admissions.admission_rate.overall"],
+      population: this.state.colleges[targetId]["latest.student.size"],
+      tuition_out_of_state: this.state.colleges[targetId]["latest.cost.tuition.out_of_state"],
+      tuition_in_state: this.state.colleges[targetId]["latest.cost.tuition.in_state"],
+      cost_average_annual: this.state.colleges[targetId]["latest.cost.attendance.academic_year"],
+      loan_average: this.state.colleges[targetId]["latest.aid.loan_principal"],
+      UserId: user,
+
+    })
+      .then(function (res) {
+        console.log("What we actually get:")
+        console.log(res.data);
+      })
+        .catch(function (err) {
+          console.log(err);
+        });
   }
 
   render() {
@@ -308,7 +339,7 @@ class SearchSection extends React.Component {
                   className={classes.icon}
                   key={i}
                   id={i}
-                  onClick={() => this.handlePost(college.id)}
+                  onClick={(event) => this.handlePost(event)}
                 >
                 <MaterialIcon icon="turned_in_not" color={colorPalette.teal._400}/>
                 </IconButton>

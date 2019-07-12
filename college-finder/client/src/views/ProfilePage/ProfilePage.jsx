@@ -17,7 +17,8 @@ import GridItem from "../../assets/components/Grid/GridItem.jsx";
 // core components
 import Header from "../../assets/components/Header/Header.jsx";
 import HeaderLinks from "../../assets/components/Header/HeaderLinks.jsx";
-import Parallax from "../../assets/components/Parallax/Parallax.jsx"; 
+import Parallax from "../../assets/components/Parallax/Parallax.jsx";
+import Axios from "axios";
 /* import Footer from "../../assets/components/Footer/Footer.jsx";
 import Button from "../../assets/components/CustomButtons/Button.jsx";
 import NavPills from "../../assets/components/NavPills/NavPills.jsx";
@@ -49,65 +50,109 @@ const styles = {
   }
 };
 
+
 class ProfilePage extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.loadData = this.loadData.bind(this);
+  }
+
+
+  state = {
+    colleges: [],
+    user: window.localStorage.getItem("user")
+  };
+
+
+  loadData = () => {
+
+    let user = this.state.user;
+
+    Axios.get("api/colleges/" + user)
+      //.then(response => console.log(response.data.results))
+      .then(response => {
+        this.setState({
+          colleges: response.data
+        });
+      })
+      .catch(error => {
+        console.log("error: ", error);
+      });
+  };
+
+  componentDidMount() {
+    this.loadData();
+  };
+
   render() {
     const { classes, ...rest } = this.props;
-  
-  return (
 
-    <div>
-      <Header
-        color="transparent"
-        brand="College Finder"
-        rightLinks={<HeaderLinks />}
-        fixed
-        changeColorOnScroll={{
-          height: 200,
-          color: "white"
-        }}
-        {...rest}
-      />
-       <Parallax small filter image={require("../../assets/img/students1.jpg")} >
-       </Parallax>
-       <div className={classes.container}>
-       <GridContainer>
-       <div className={classes.container}>
-        <h1>You can Review your Saved Colleges Here!</h1>
-        </div>
-       
-        <GridItem> 
+    return (
+
+      <div>
+        <Header
+          color="transparent"
+          brand="College Finder"
+          rightLinks={<HeaderLinks />}
+          fixed
+          changeColorOnScroll={{
+            height: 200,
+            color: "white"
+          }}
+          {...rest}
+        />
+        <Parallax small filter image={require("../../assets/img/students1.jpg")} >
+        </Parallax>
         <div className={classes.container}>
-            <Card className={classes.card}>
-      <CardContent>
-        <Typography variant="h5" component="h2">
-          School Name
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          Programs Offered:
-        </Typography>
-        <Typography component="p">
-          State:
-          <br />
-          Average SAT Score:
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Link to School Site</Button>
-        <Button size="small">Delete School From List</Button>
-      </CardActions>
-    </Card>
-    </div>
-        </GridItem>
-         </GridContainer>
+          <GridContainer>
+            <div className={classes.container}>
+              <h1>You can Review your Saved Colleges Here!</h1>
+            </div>
+
+            {this.state.colleges.map((college, i) => {
+              return (
+
+                <GridItem>
+                  <div className={classes.container}>
+
+                    <Card className={classes.card}>
+                      <CardContent key={college["school.name"]}>
+                        <Typography variant="h5" component="h2">
+                          School Name
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                          Programs Offered:
+                        </Typography>
+                        <Typography component="p">
+                          State:
+                          <br />
+                          Average SAT Score:
+                        </Typography>
+                      </CardContent>
+
+                      <CardActions>
+                        <Button size="small">Link to School Site</Button>
+                        <Button size="small">Delete School From List</Button>
+                      </CardActions>
+
+                    </Card>
+                  </div>
+                </GridItem>
+
+              )
+            })}
+
+          </GridContainer>
+        </div>
       </div>
-    </div>
-    
-   );
+
+    );
   };
 };
 
 ProfilePage.propTypes = {
   classes: PropTypes.object.isRequired,
-};       
+};
 
 export default withStyles(styles)(ProfilePage);
