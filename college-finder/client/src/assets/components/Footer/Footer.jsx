@@ -5,9 +5,7 @@ import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 import { List, ListItem, withStyles } from "@material-ui/core";
-
-// @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
+import Button from '@material-ui/core/Button';
 
 import footerStyle from "../../../assets/jss/material-kit-react/components/footerStyle.jsx";
 
@@ -21,11 +19,26 @@ function Footer({ ...props }) {
     [classes.a]: true,
     [classes.footerWhiteFont]: whiteFont
   });
+
+  const handleLogout = () => {
+    event.preventDefault();
+    console.log("Logging out!");
+    localStorage.clear();
+    window.location.href = '/';
+  }
+  
+
   return (
     <footer className={footerClasses}>
       <div className={classes.container}>
         <div className={classes.left}>
           <List className={classes.list}>
+          <ListItem className={classes.inlineBlock}>
+             <Button 
+                style={{fontSize:15, marginLeft: -120, background: 'linear-gradient(45deg, #00bfa5 30%, #64ffda 90%)'}}
+                onClick={ (event) => handleLogout(event)}
+             > Log me out</Button>
+            </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a
                 href="https://github.com/Jacquie04/college_finder.git"
