@@ -19,13 +19,25 @@ function Footer({ ...props }) {
     [classes.a]: true,
     [classes.footerWhiteFont]: whiteFont
   });
+
+  const handleLogout = () => {
+    event.preventDefault();
+    console.log("Logging out!");
+    localStorage.clear();
+    window.location.href = '/';
+  }
+  
+
   return (
     <footer className={footerClasses}>
       <div className={classes.container}>
         <div className={classes.left}>
           <List className={classes.list}>
           <ListItem className={classes.inlineBlock}>
-             <Button  style={{fontSize:15, marginLeft: -120, background: 'linear-gradient(45deg, #00bfa5 30%, #64ffda 90%)'}}> Log me out</Button>
+             <Button 
+                style={{fontSize:15, marginLeft: -120, background: 'linear-gradient(45deg, #00bfa5 30%, #64ffda 90%)'}}
+                onClick={ (event) => handleLogout(event)}
+             > Log me out</Button>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a
