@@ -144,9 +144,9 @@ class ProfilePage extends React.Component {
                         <Button size="small">Link to School Site</Button>
                         <Button size="small"
                           key={i}
-                          id={college["school.id"]}
+                          id={i}
                           onClick={ (event) => this.handleDelete(event) }
-                        >Delete School From List
+                          >Delete School From List
                         </Button>
                       </CardActions>
 

@@ -314,40 +314,44 @@ class SearchSection extends React.Component {
           </div>
           {this.state.colleges.map((college, i) => {
             return (
+              
               <GridItem> 
-              <div className={classes.container}>
+                <div className={classes.container}>
+
                   <Card className={classes.card}>
-            <CardContent key={college["school.name"]}>
-              <Typography variant="h5" component="h2">
-                School Name: {college["school.name"]}
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-               
-              </Typography>
-              <Typography component="p">
-                State: {college["school.state"]}
-                <br />
-                Average SAT Score: { college["latest.admissions.sat_scores.average.overall"]} 
-                <br />
-                In State Cost: {college["latest.cost.tuition.in_state"]}
-                <br />
-                Out of State Cost: {college["latest.cost.tuition.out_of_state"]}
-              </Typography>
-            </CardContent>
-            <CardActions >
-                <IconButton 
-                  className={classes.icon}
-                  key={i}
-                  id={i}
-                  onClick={(event) => this.handlePost(event)}
-                >
-                <MaterialIcon icon="turned_in_not" color={colorPalette.teal._400}/>
-                </IconButton>
-              <Button size="small">Link to School Site</Button>
-            </CardActions>
-          </Card>
-          </div>
-              </GridItem>
+                    <CardContent key={college["school.name"]}>
+                      <Typography variant="h5" component="h2">
+                        School Name: {college["school.name"]}
+                      </Typography>
+                    <Typography className={classes.pos} color="textSecondary">
+                    </Typography>
+                    
+                    <Typography component="p">
+                      State: {college["school.state"]}
+                      <br />
+                      Average SAT Score: { college["latest.admissions.sat_scores.average.overall"]} 
+                      <br />
+                      In State Cost: {college["latest.cost.tuition.in_state"]}
+                      <br />
+                      Out of State Cost: {college["latest.cost.tuition.out_of_state"]}
+                    </Typography>
+                  </CardContent>
+
+                    <CardActions >
+                      <IconButton 
+                        className={classes.icon}
+                        key={i}
+                        id={i}
+                        onClick={(event) => this.handlePost(event)}
+                      >
+                      <MaterialIcon icon="turned_in_not" color={colorPalette.teal._400}/>
+                      </IconButton>
+                      <Button size="small">Link to School Site</Button>
+                    </CardActions>
+
+                    </Card>
+                  </div>
+                </GridItem>
             )
           })}
 
