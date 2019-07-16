@@ -85,6 +85,15 @@ class ProfilePage extends React.Component {
     this.loadData();
   };
 
+  handleDelete = (event) => {
+
+    event.preventDefault();
+
+    let targetId = event.currentTarget.id;
+    console.log("Button " + targetId + " clicked. Deleting College.");
+
+  }
+
   render() {
     const { classes, ...rest } = this.props;
 
@@ -119,7 +128,7 @@ class ProfilePage extends React.Component {
                     <Card className={classes.card}>
                       <CardContent key={college["school.name"]}>
                         <Typography variant="h5" component="h2">
-                          School Name
+                          School Name: {college["school.name"]}
                         </Typography>
                         <Typography className={classes.pos} color="textSecondary">
                           Programs Offered:
@@ -133,7 +142,12 @@ class ProfilePage extends React.Component {
 
                       <CardActions>
                         <Button size="small">Link to School Site</Button>
-                        <Button size="small">Delete School From List</Button>
+                        <Button size="small"
+                          key={i}
+                          id={college["school.id"]}
+                          onClick={ (event) => this.handleDelete(event) }
+                        >Delete School From List
+                        </Button>
                       </CardActions>
 
                     </Card>

@@ -186,10 +186,10 @@ class SearchSection extends React.Component {
     event.preventDefault();
 
     let user = this.state.user;
-    let targetId = event.currentTarget.id
+    let targetId = event.currentTarget.id;
 
     console.log("Save Button " + targetId + " has been clicked by User ID " + user);
-    console.log("Expecting to see:")
+    console.log("Expecting to see:");
     console.log(this.state.colleges[targetId]);
    
     axios.post("api/colleges", {

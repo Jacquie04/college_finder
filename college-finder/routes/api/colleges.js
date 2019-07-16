@@ -5,6 +5,7 @@ console.log("from colleges route (colleges.js)");
 router.route("/")
     .get(collegeController.findAllColleges)
     .post(collegeController.addCollege)
+    .delete(collegeController.deleteCollege);
 
 router.route("/:id")
     .get(collegeController.findAllColleges)
