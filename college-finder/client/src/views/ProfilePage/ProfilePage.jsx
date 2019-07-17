@@ -90,7 +90,17 @@ class ProfilePage extends React.Component {
     event.preventDefault();
 
     let targetId = event.currentTarget.id;
-    console.log("Button " + targetId + " clicked. Deleting College.");
+    console.log("College id " + targetId + " clicked. Deleting College - " + event.currentTarget.name);
+
+    Axios.delete("api/colleges/" + targetId)
+      .then(response => {
+          this.setState({
+            colleges: response.data
+        });
+      })
+      .catch(error => {
+        console.log("error: ", error);
+      });
 
   }
 
@@ -126,9 +136,9 @@ class ProfilePage extends React.Component {
                   <div className={classes.container}>
 
                     <Card className={classes.card}>
-                      <CardContent key={college["school.name"]}>
+                      <CardContent key={college.name}>
                         <Typography variant="h5" component="h2">
-                          School Name: {college["school.name"]}
+                          {college.name}
                         </Typography>
                         <Typography className={classes.pos} color="textSecondary">
                           Programs Offered:
@@ -144,7 +154,8 @@ class ProfilePage extends React.Component {
                         <Button size="small">Link to School Site</Button>
                         <Button size="small"
                           key={i}
-                          id={i}
+                          id={college.id}
+                          name={college.name}
                           onClick={ (event) => this.handleDelete(event) }
                           >Delete School From List
                         </Button>
