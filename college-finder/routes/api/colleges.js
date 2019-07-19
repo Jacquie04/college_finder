@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const collegeController = require("../../controllers/collegeController");
-console.log("from colleges route (colleges.js)");
+
 //matches with "/api/colleges"
 router.route("/")
     .get(collegeController.findAllColleges)
     .post(collegeController.addCollege)
-    //.delete(collegeController.deleteCollege);
-
+    
+//matches with "/api/colleges/:id"
 router.route("/:id")
     .get(collegeController.findAllColleges)
     .delete(collegeController.deleteCollege);

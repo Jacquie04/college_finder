@@ -56,6 +56,7 @@ class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.loadData = this.loadData.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
 
@@ -93,17 +94,14 @@ class ProfilePage extends React.Component {
     console.log("College id " + targetId + " clicked. Deleting College - " + event.currentTarget.name);
 
     Axios.delete("api/colleges/" + targetId)
-      .then(response => {
-          this.setState({
-            colleges: response.data
-        });
+      .then( () => {
+          return this.loadData()
       })
       .catch(error => {
         console.log("error: ", error);
       });
 
   }
-
   render() {
     const { classes, ...rest } = this.props;
 
