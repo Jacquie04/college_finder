@@ -187,7 +187,9 @@ class SearchSection extends React.Component {
 
     let user = this.state.user;
     let targetId = event.currentTarget.id;
-
+    //removes "-" and subsequent characters from zip codes. EG "11111-22222" will now be reduced to "11111".
+    let zipCode = this.state.colleges[targetId]["school.zip"].toString().substring(0,5);
+ 
     console.log("Save Button " + targetId + " has been clicked by User ID " + user);
     console.log("Expecting to see:");
     console.log(this.state.colleges[targetId]);
@@ -196,7 +198,7 @@ class SearchSection extends React.Component {
       name: this.state.colleges[targetId]["school.name"],
       alias: this.state.colleges[targetId]["school.alias"],
       city: this.state.colleges[targetId]["school.city"],
-      zip: this.state.colleges[targetId]["school.zip"],
+      zip: zipCode,
       sat_score: this.state.colleges[targetId]["latest.admissions.sat_scores.average.overall"],
       admission_rate: this.state.colleges[targetId]["latest.admissions.admission_rate.overall"],
       population: this.state.colleges[targetId]["latest.student.size"],
