@@ -76,6 +76,10 @@ class ProfilePage extends React.Component {
         this.setState({
           colleges: response.data
         });
+
+        console.log("User " + user + " array:");
+        console.log(response.data);
+        console.log("----------------");
       })
       .catch(error => {
         console.log("error: ", error);
@@ -91,17 +95,32 @@ class ProfilePage extends React.Component {
     event.preventDefault();
 
     let targetId = event.currentTarget.id;
-    console.log("College id " + targetId + " clicked. Deleting College - " + event.currentTarget.name);
+    let currentColleges = this.state.colleges;
+    let filteredColleges = currentColleges.filter(college => college.id != targetId);
+
+    console.log("College id " + targetId + " clicked by User " + this.state.user + ". Deleting College: " + event.currentTarget.name);
+
+    this.setState ({
+      colleges: filteredColleges 
+    });
 
     Axios.delete("api/colleges/" + targetId)
-      .then( () => {
-          return this.loadData()
-      })
-      .catch(error => {
-        console.log("error: ", error);
+      .then(response => {
+        if (response.status === "error") {
+
+          this.setState ({
+            colleges: currentColleges
+          });
+
+        } else {
+          //this code is currently not reached. Further investigation needed.
+          console.log(response);
+          return response;
+        }
       });
 
   }
+
   render() {
     const { classes, ...rest } = this.props;
 
