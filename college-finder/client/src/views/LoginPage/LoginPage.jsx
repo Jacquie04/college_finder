@@ -101,7 +101,9 @@ class LoginPage extends React.Component {
                       <CustomInput
                         labelText="Password"
                         id="pass"
+                        type="password"
                         inputProps={{
+                          type: "password",
                           inputType: "password",
                           name: "password",
                           value: this.state.password,
