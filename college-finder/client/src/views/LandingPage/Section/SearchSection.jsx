@@ -185,33 +185,31 @@ class SearchSection extends React.Component {
 
     event.preventDefault();
 
-    let user = this.state.user;
-    let targetId = event.currentTarget.id;
-    //removes "-" and subsequent characters from zip codes. EG "11111-22222" will now be reduced to "11111".
-    let zipCode = this.state.colleges[targetId]["school.zip"].toString().substring(0,5);
+    const user = this.state.user;
+    const buttonId = event.currentTarget.id;
+    const college = this.state.colleges[buttonId];
  
-    console.log("Save Button " + targetId + " has been clicked by User ID " + user);
-    console.log("Expecting to see:");
-    console.log(this.state.colleges[targetId]);
+    console.log("Save Button " + buttonId + " has been clicked by User ID " + user);
+    console.log("Saving: ", college["school.name"]);
    
     axios.post("api/colleges", {
-      name: this.state.colleges[targetId]["school.name"],
-      alias: this.state.colleges[targetId]["school.alias"],
-      city: this.state.colleges[targetId]["school.city"],
-      zip: zipCode,
-      sat_score: this.state.colleges[targetId]["latest.admissions.sat_scores.average.overall"],
-      admission_rate: this.state.colleges[targetId]["latest.admissions.admission_rate.overall"],
-      population: this.state.colleges[targetId]["latest.student.size"],
-      tuition_out_of_state: this.state.colleges[targetId]["latest.cost.tuition.out_of_state"],
-      tuition_in_state: this.state.colleges[targetId]["latest.cost.tuition.in_state"],
-      cost_average_annual: this.state.colleges[targetId]["latest.cost.attendance.academic_year"],
-      loan_average: this.state.colleges[targetId]["latest.aid.loan_principal"],
+
+      name: college["school.name"],
+      alias: college["school.alias"],
+      city: college["school.city"],
+      zip: college["school.zip"].toString().substring(0,5),
+      sat_score: college["latest.admissions.sat_scores.average.overall"],
+      admission_rate: college["latest.admissions.admission_rate.overall"],
+      population: college["latest.student.size"],
+      tuition_out_of_state: college["latest.cost.tuition.out_of_state"],
+      tuition_in_state: college["latest.cost.tuition.in_state"],
+      cost_average_annual: college["latest.cost.attendance.academic_year"],
+      loan_average: college["latest.aid.loan_principal"],
       UserId: user,
 
     })
       .then(function (res) {
-        console.log("What we actually get:")
-        console.log(res.data);
+        console.log(res.status, "College saved.")
       })
         .catch(function (err) {
           console.log(err);
