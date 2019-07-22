@@ -112,9 +112,11 @@ class ProfilePage extends React.Component {
             colleges: currentColleges
           });
 
+          console.log("Error deleting. Restoring college to page.");
+
         } else {
-          //this code is currently not reached. Further investigation needed.
-          console.log(response);
+  
+          console.log(response.status, " College deleted.");
           return response;
         }
       });

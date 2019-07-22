@@ -12,18 +12,17 @@ module.exports = {
 
     addCollege: function (req, res) {
         console.log("College added to database.");
-        db.College.create(req.body).then(function(dbCollege) {
-            res.json(dbCollege);
-        })
+        db.College.create(req.body).then(dbCollege => res.json(dbCollege));
     },
 
     findByUser: function (req, res) {
-        console.log("hello from find by");
+        console.log("All colleges being queried by specified user.");
         db.College.findAll({ where: {UserId: req.params.id} }).then(dbCollege => res.json(dbCollege));
     },
 
     deleteCollege: function (req, res) {
-        db.College.destroy({ where: {id: req.params.id} }).then(console.log("college deleted"));
+        console.log("College deleted.")
+        db.College.destroy({ where: {id: req.params.id} }).then(dbCollege => res.json(dbCollege));
     },
 
     findUsers: function (req, res) {
