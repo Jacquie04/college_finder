@@ -42,7 +42,7 @@ class App extends Component {
           });
         }
       }).catch(err => {
-        console.log('no user');
+        console.log(err, 'no user');
       });
   }
 
