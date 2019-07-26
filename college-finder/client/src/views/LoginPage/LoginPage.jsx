@@ -4,7 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 //components for login page
 import Header from "../../assets/components/Header/Header.jsx";
-import HeaderLinks from "../../assets/components/Header/HeaderLinks.jsx";
+
 import Footer from "../../assets/components/Footer/Footer.jsx";
 import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
 import GridItem from "../../assets/components/Grid/GridItem.jsx";

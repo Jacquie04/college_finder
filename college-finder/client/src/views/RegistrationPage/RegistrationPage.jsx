@@ -12,6 +12,9 @@ import Fab from "@material-ui/core/Fab";
 
 //components for login page
 import Header from "../../assets/components/Header/Header.jsx";
+import Card from "../../assets/components/Card/Card.jsx";
+import Paper from '@material-ui/core/Paper';
+import CardBody from "../../assets/components/Card/CardBody.jsx";
 //import HeaderLinks from "../../assets/components/Header/HeaderLinks.jsx";
 import Footer from "../../assets/components/Footer/Footer.jsx";
 import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
@@ -26,6 +29,7 @@ const styles = theme => ({
     display: "flex",
     flexWrap: "wrap"
   },
+ 
   textField: {
     marginLeft: 60,
     marginRight: theme.spacing.unit,
@@ -106,13 +110,9 @@ class RegistrationPage extends React.Component {
           {...rest}
         />
         <Parallax filter image={require("../../assets/img/students3.jpg")}>
-          <div className={classes.container}>
-            <GridContainer>
-              <GridItem >
-              </GridItem>
-            </GridContainer>
-          </div>
-        </Parallax>
+       
+        
+        <Card style={{width: 1400, height: 300, marginLeft: 50, marginTop: 300 }}>
         <form
           //onSubmit={this.handleRegister}
           className={classes.container}
@@ -212,7 +212,8 @@ class RegistrationPage extends React.Component {
             </Fab>
           </div>
         </form>
-
+        </Card>
+        </Parallax>
         <Footer whiteFont />
       </div>
     );
