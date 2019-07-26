@@ -33,12 +33,7 @@ function Footer({ ...props }) {
       <div className={classes.container}>
         <div className={classes.left}>
           <List className={classes.list}>
-          <ListItem className={classes.inlineBlock}>
-             <Button 
-                style={{fontSize:15, marginLeft: -120, background: 'linear-gradient(45deg, #00bfa5 30%, #64ffda 90%)'}}
-                onClick={ (event) => handleLogout(event)}
-             > Log me out</Button>
-            </ListItem>
+        
             <ListItem className={classes.inlineBlock}>
               <a
                 href="https://github.com/Jacquie04/college_finder.git"
@@ -49,6 +44,12 @@ function Footer({ ...props }) {
               </a>
             </ListItem>
           </List>
+        </div>
+        <div className={classes.inlineBlock}>
+        <Button 
+                style={{color: "white", fontSize:15, marginLeft: -110, background: 'linear-gradient(45deg, #00bfa5 30%, #64ffda 90%)'}}
+                onClick={ (event) => handleLogout(event)}
+             > Log me out</Button>
         </div>
         <div className={classes.right}>
           &copy; {1900 + new Date().getYear()} College Finder

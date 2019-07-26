@@ -63,7 +63,6 @@ class LoginPage extends React.Component {
           absolute
           color="transparent"
           brand="College Finder"
-          rightLinks={<HeaderLinks />}
           {...rest}
         />
         <div
