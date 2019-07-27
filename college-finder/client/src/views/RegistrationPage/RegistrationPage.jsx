@@ -13,6 +13,7 @@ import Fab from "@material-ui/core/Fab";
 //components for login page
 import Header from "../../assets/components/Header/Header.jsx";
 import Card from "../../assets/components/Card/Card.jsx";
+import Button from "../../assets/components/CustomButtons/Button.jsx";
 import Paper from '@material-ui/core/Paper';
 import CardBody from "../../assets/components/Card/CardBody.jsx";
 //import HeaderLinks from "../../assets/components/Header/HeaderLinks.jsx";
@@ -22,7 +23,7 @@ import GridItem from "../../assets/components/Grid/GridItem.jsx";
 //import Button from "../../assets/components/CustomButtons/Button.jsx";
 //import CustomInput from "../../assets/components/CustomInput/CustomInput.jsx";
 import stateData from '../../stateData.json';
-//import image from "../../assets/img/college5.jpg";
+import image from "../../assets/img/students3.jpg";
 
 const styles = theme => ({
   container: {
@@ -31,9 +32,9 @@ const styles = theme => ({
   },
  
   textField: {
-    marginLeft: 60,
+    marginLeft: 80,
     marginRight: theme.spacing.unit,
-    marginTop: 80
+    marginTop: 40
   },
   dense: {
     marginTop: 16
@@ -109,10 +110,19 @@ class RegistrationPage extends React.Component {
           }}
           {...rest}
         />
-        <Parallax filter image={require("../../assets/img/students3.jpg")}>
-       
-        
-        <Card style={{width: 1400, height: 300, marginLeft: 50, marginTop: 300 }}>
+          <div
+          className={classes.pageHeader}
+          style={{
+            backgroundImage: "url(" + image + ")",
+            backgroundSize: "cover",
+            backgroundPosition: "top center"
+          }}
+        >
+        <div className={classes.container}>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={4}></GridItem>
+        <Card style={{width: 780, height: 400, marginLeft: 80, marginTop: 410 }}>
+          <CardBody>
         <form
           //onSubmit={this.handleRegister}
           className={classes.container}
@@ -196,25 +206,22 @@ class RegistrationPage extends React.Component {
               </MenuItem>
             ))}
           </TextField>
-          <div>
-            <Fab
-              variant="extended"
-              size="medium"
-              type="submit"
-              color="primary"
-              aria-label="Add"
-              className={classes.margin}
+            <Button 
+              style={{marginLeft: 100, marginTop: 50, height: 40, width: 100, color: "white", fontSize:15, background: 'linear-gradient(45deg, #00bfa5 30%, #64ffda 90%)'}}
               href="/profile/:id"
               onClick={this.handleRegister}
             >
               <NavigationIcon className={classes.extendedIcon} />
               Submit
-            </Fab>
-          </div>
+            </Button>
+          
         </form>
+        </CardBody>
         </Card>
-        </Parallax>
+        </GridContainer>
+          </div>
         <Footer whiteFont />
+        </div>
       </div>
     );
   }
