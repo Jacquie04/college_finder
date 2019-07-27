@@ -42,7 +42,7 @@ class LoginPage extends React.Component {
     axios.post("/api/login", this.state).then(res => {
       this.props.setUser(res);
     });
-    console.log(this.state);
+
   };
 
   handleInputChange = event => {
@@ -100,7 +100,9 @@ class LoginPage extends React.Component {
                       <CustomInput
                         labelText="Password"
                         id="pass"
+                        type="password"
                         inputProps={{
+                          type: "password",
                           inputType: "password",
                           name: "password",
                           value: this.state.password,

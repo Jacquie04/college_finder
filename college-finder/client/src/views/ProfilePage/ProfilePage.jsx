@@ -56,6 +56,7 @@ class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.loadData = this.loadData.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
 
@@ -75,6 +76,10 @@ class ProfilePage extends React.Component {
         this.setState({
           colleges: response.data
         });
+
+        console.log("User " + user + " array:");
+        console.log(response.data);
+        console.log("----------------");
       })
       .catch(error => {
         console.log("error: ", error);
@@ -84,6 +89,39 @@ class ProfilePage extends React.Component {
   componentDidMount() {
     this.loadData();
   };
+
+  handleDelete = (event) => {
+
+    event.preventDefault();
+
+    let targetId = event.currentTarget.id;
+    let currentColleges = this.state.colleges;
+    let filteredColleges = currentColleges.filter(college => college.id != targetId);
+
+    console.log("College id " + targetId + " clicked by User " + this.state.user + ". Deleting College: " + event.currentTarget.name);
+
+    this.setState ({
+      colleges: filteredColleges 
+    });
+
+    Axios.delete("api/colleges/" + targetId)
+      .then(response => {
+        if (response.status === "error") {
+
+          this.setState ({
+            colleges: currentColleges
+          });
+
+          console.log("Error deleting. Restoring college to page.");
+
+        } else {
+  
+          console.log(response.status, " College deleted.");
+          return response;
+        }
+      });
+
+  }
 
   render() {
     const { classes, ...rest } = this.props;
@@ -117,9 +155,9 @@ class ProfilePage extends React.Component {
                   <div className={classes.container}>
 
                     <Card className={classes.card}>
-                      <CardContent key={college["school.name"]}>
+                      <CardContent key={college.name}>
                         <Typography variant="h5" component="h2">
-                          School Name
+                          {college.name}
                         </Typography>
                         <Typography className={classes.pos} color="textSecondary">
                           Programs Offered:
@@ -133,7 +171,13 @@ class ProfilePage extends React.Component {
 
                       <CardActions>
                         <Button size="small">Link to School Site</Button>
-                        <Button size="small">Delete School From List</Button>
+                        <Button size="small"
+                          key={i}
+                          id={college.id}
+                          name={college.name}
+                          onClick={ (event) => this.handleDelete(event) }
+                          >Delete School From List
+                        </Button>
                       </CardActions>
 
                     </Card>
