@@ -112,14 +112,14 @@ class SearchSection extends React.Component {
     console.log("---------------------------------------");
     console.log("Searching for the following parameters:");
 
-    //grabs user input from College Search Input
+    //grabs user input from College Search Input. Queries "school.name" if character length greater than 6.
     if (this.state.schoolName.length > 6) {
       let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
       let fullSchoolString = "school.name=" + nameOfSchool;
       queryString += fullSchoolString;
       console.log(nameOfSchool);
     }
-
+    //Queries "school.alias" if less than 6.
     else if (this.state.schoolName.length >= 1) {
       let nameOfSchool = this.state.schoolName.trim().split(" ").join("%20");
       let fullAliasString = "school.alias=" + nameOfSchool;
@@ -170,9 +170,9 @@ class SearchSection extends React.Component {
     console.log(queryString);
     console.log("---------------------------------------");
 
-
+    //puts together query string above, searches for corresponding colleges and sets the response to state.
     axios.get(queryString + queryFields + api)
-      //.then(response => console.log(response.data.results))
+      
       .then(response => {
         this.setState({
           colleges: response.data.results
@@ -180,7 +180,7 @@ class SearchSection extends React.Component {
       });
 
   }
-
+  //this saves individual colleges based off the specific button that is pressed.
   handlePost = (event) => {
 
     event.preventDefault();

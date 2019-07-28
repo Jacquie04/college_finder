@@ -62,16 +62,18 @@ class ProfilePage extends React.Component {
 
   state = {
     colleges: [],
+    //collects user info from local storage
     user: window.localStorage.getItem("user")
   };
 
-
+  //upon initial page load, the list of saved colleges is searched by the logged in user.
+  //this is called in componentDidMount()
   loadData = () => {
 
     let user = this.state.user;
 
     Axios.get("api/colleges/" + user)
-      //.then(response => console.log(response.data.results))
+      
       .then(response => {
         this.setState({
           colleges: response.data
@@ -89,23 +91,26 @@ class ProfilePage extends React.Component {
   componentDidMount() {
     this.loadData();
   };
-
+  //this deletes selected college from saved college page.
   handleDelete = (event) => {
 
     event.preventDefault();
 
     let targetId = event.currentTarget.id;
+    //the list of current colelges is saved as a variable here
     let currentColleges = this.state.colleges;
+    //Here, the selected college is filtered out of current colleges. The result is saved to a variable.
     let filteredColleges = currentColleges.filter(college => college.id != targetId);
 
     console.log("College id " + targetId + " clicked by User " + this.state.user + ". Deleting College: " + event.currentTarget.name);
-
+    //The list of filtered colleges is first set to state, effectively removing the selected college card from the page
     this.setState ({
       colleges: filteredColleges 
     });
-
+    //After that is done, the selected college is deleted from the database.
     Axios.delete("api/colleges/" + targetId)
       .then(response => {
+        //If an error occurs, currentColleges is set as state, adding the deleted college back to the page.
         if (response.status === "error") {
 
           this.setState ({
