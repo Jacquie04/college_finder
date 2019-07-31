@@ -1,26 +1,20 @@
 import React from "react";
 import axios from "axios";
-
 import withStyles from "@material-ui/core/styles/withStyles";
-import Parallax from "../../assets/components/Parallax/Parallax.jsx";
 import PropTypes from "prop-types";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import NavigationIcon from "@material-ui/icons/Navigation";
-import Fab from "@material-ui/core/Fab";
-//import IconButton from '@material-ui/core/IconButton';
 
 //components for login page
 import Header from "../../assets/components/Header/Header.jsx";
 import Card from "../../assets/components/Card/Card.jsx";
 import Button from "../../assets/components/CustomButtons/Button.jsx";
-import Paper from '@material-ui/core/Paper';
 import CardBody from "../../assets/components/Card/CardBody.jsx";
 //import HeaderLinks from "../../assets/components/Header/HeaderLinks.jsx";
 import Footer from "../../assets/components/Footer/Footer.jsx";
 import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
 import GridItem from "../../assets/components/Grid/GridItem.jsx";
-//import Button from "../../assets/components/CustomButtons/Button.jsx";
 //import CustomInput from "../../assets/components/CustomInput/CustomInput.jsx";
 import stateData from '../../stateData.json';
 import image from "../../assets/img/students3.jpg";
