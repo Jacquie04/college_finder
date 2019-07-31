@@ -118,7 +118,6 @@ class RegistrationPage extends React.Component {
         <Card style={{width: 780, height: 400, marginLeft: 80, marginTop: 410 }}>
           <CardBody>
         <form
-          //onSubmit={this.handleRegister}
           className={classes.container}
           noValidate
           autoComplete="on"
