@@ -17,7 +17,7 @@ import GridContainer from "../../assets/components/Grid/GridContainer.jsx";
 import GridItem from "../../assets/components/Grid/GridItem.jsx";
 //import CustomInput from "../../assets/components/CustomInput/CustomInput.jsx";
 import stateData from '../../stateData.json';
-import image from "../../assets/img/students3.jpg";
+import image from "../../assets/img/stanford-morning.jpg";
 
 const styles = theme => ({
   container: {
@@ -26,7 +26,7 @@ const styles = theme => ({
   },
  
   textField: {
-    marginLeft: 80,
+    marginLeft: 100,
     marginRight: theme.spacing.unit,
     marginTop: 40
   },
@@ -115,7 +115,7 @@ class RegistrationPage extends React.Component {
         <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={4}></GridItem>
-        <Card style={{width: 780, height: 400, marginLeft: 80, marginTop: 410 }}>
+        <Card style={{width: 800, height: 400, marginLeft: 280, marginTop: 285 }}>
           <CardBody>
         <form
           className={classes.container}
@@ -200,7 +200,7 @@ class RegistrationPage extends React.Component {
             ))}
           </TextField>
             <Button 
-              style={{marginLeft: 100, marginTop: 50, height: 40, width: 100, color: "white", fontSize:15, background: 'linear-gradient(45deg, #00bfa5 30%, #64ffda 90%)'}}
+              style={{marginLeft: 120, marginTop: 50, height: 40, width: 100, color: "white", fontSize:15, background: 'linear-gradient(45deg, #00bfa5 30%, #64ffda 90%)'}}
               href="/profile/:id"
               onClick={this.handleRegister}
             >
