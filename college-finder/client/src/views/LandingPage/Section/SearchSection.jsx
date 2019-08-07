@@ -5,7 +5,6 @@ import MaterialIcon, { colorPalette } from 'material-icons-react';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import NavigationIcon from '@material-ui/icons/Navigation';
-import Fab from '@material-ui/core/Fab';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -229,7 +228,7 @@ class SearchSection extends React.Component {
     return (
       <div className={classes.root}>
         <div>
-          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center", marginTop: '40px', marginBottom: '30px', marginLeft:'180px' }}>
+          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center", marginTop: '40px', marginBottom: '30px', marginLeft: '180px' }}>
             You're One Step Away from Finding Your Dream School!
           </Typography>
         </div>
@@ -298,31 +297,31 @@ class SearchSection extends React.Component {
             variant="filled"
           />
 
-          <Fab
+          <Button
+            style={{ marginLeft: 550, marginTop: 20, marginBottom: 30, height: 40, width: 100, color: "white", fontSize: 15, background: 'linear-gradient(45deg, #00bfa5 30%, #64ffda 90%)' }}
             variant="extended"
             size="medium"
             type="submit"
-            color='primary'
             aria-label="Add"
             onClick={() => this.handleSubmit()}
             className={classes.margin}
           >
             <NavigationIcon className={classes.extendedIcon} />
             Submit
-        </Fab>
+        </Button>
         </div>
-        <GridList cellHeight={'auto'} className={classes.gridList} style={{ overflowY: 'scroll', display:'flex', marginLeft:'160px', }}>
-        <div>
-              <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center" }}>
-                College Lists Based on Your Search Criteria
+        <GridList cellHeight={'auto'} className={classes.gridList} style={{ overflowY: 'scroll', display: 'flex', marginLeft: '160px', }}>
+          <div>
+            <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center" }}>
+              College Lists Based on Your Search Criteria
           </Typography>
-            </div>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto', width:'600px', marginTop:'30px', marginBottom:'20px', marginLeft:'150px' }}>
-            
+          </div>
+          <GridListTile key="Subheader" cols={2} style={{ height: 'auto', width: '600px', marginTop: '30px', marginBottom: '20px', marginLeft: '150px' }}>
+
             {this.state.colleges.map((college, i) => {
               return (
 
-                <GridItem style={{ marginTop:'30px', marginBottom:'20px',}}>
+                <GridItem style={{ marginTop: '30px', marginBottom: '20px', }}>
                   <div className={classes.container}>
 
                     <Card className={classes.card}>
