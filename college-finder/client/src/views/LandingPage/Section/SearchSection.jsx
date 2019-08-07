@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import withStyles from "@material-ui/core/styles/withStyles";
-import MaterialIcon, {colorPalette} from 'material-icons-react';
+import MaterialIcon, { colorPalette } from 'material-icons-react';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import NavigationIcon from '@material-ui/icons/Navigation';
@@ -24,36 +24,42 @@ import bachelorProgramData from '../../../bachelorProgramData.json';
 
 const styles = theme => ({
   root: {
-    display: 'flex',
     textalign: 'center',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     width: 1000,
-    height: 1000
+    height: 400,
+    overflow: 'hidden',
+    display: 'flex',
+    marginLeft: 100,
   },
   gridListTile: {
     height: 400,
     width: 400,
   },
   textField: {
+    marginLeft: 450,
+    width: 300,
+    marginBottom: 0,
+    overflow: 'hidden',
     display: 'flex',
-    justifyContent: 'space-around', 
-    marginBottom: 0
+    flexDirection: 'column',
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
+    overflow: 'hidden',
   },
   tileImages: {
     width: 200,
     height: 200,
+    overflow: 'hidden',
   },
   margin: {
     marginTop: 30,
-    marginBottom: 0
+    marginBottom: 0,
+    overflow: 'hidden',
   },
 
 });
@@ -65,7 +71,7 @@ class SearchSection extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePost = this.handlePost.bind(this);
-}
+  }
 
   state = {
     stateData: "",
@@ -172,7 +178,7 @@ class SearchSection extends React.Component {
 
     //puts together query string above, searches for corresponding colleges and sets the response to state.
     axios.get(queryString + queryFields + api)
-      
+
       .then(response => {
         this.setState({
           colleges: response.data.results
@@ -188,16 +194,16 @@ class SearchSection extends React.Component {
     const user = this.state.user;
     const buttonId = event.currentTarget.id;
     const college = this.state.colleges[buttonId];
- 
+
     console.log("Save Button " + buttonId + " has been clicked by User ID " + user);
     console.log("Saving: ", college["school.name"]);
-   
+
     axios.post("api/colleges", {
 
       name: college["school.name"],
       alias: college["school.alias"],
       city: college["school.city"],
-      zip: college["school.zip"].toString().substring(0,5),
+      zip: college["school.zip"].toString().substring(0, 5),
       sat_score: college["latest.admissions.sat_scores.average.overall"],
       admission_rate: college["latest.admissions.admission_rate.overall"],
       population: college["latest.student.size"],
@@ -211,9 +217,9 @@ class SearchSection extends React.Component {
       .then(function (res) {
         console.log(res.status, "College saved.")
       })
-        .catch(function (err) {
-          console.log(err);
-        });
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 
   render() {
@@ -222,139 +228,140 @@ class SearchSection extends React.Component {
 
     return (
       <div className={classes.root}>
-        <GridList cellHeight={'auto'} className={classes.gridList}>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <div>
-          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center", marginTop: '40px', marginBottom: '30px' }}>
+        <div>
+          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center", marginTop: '40px', marginBottom: '30px', marginLeft:'180px' }}>
             You're One Step Away from Finding Your Dream School!
           </Typography>
-          </div>
+        </div>
+        <div class="flex-container">
+          <TextField
+            id="filled-select-states"
+            select
+            className={classes.textField}
+            value={this.state.stateData}
+            style={{ backgroundColor: 'white', }}
+            onChange={this.handleChange('stateData')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            helperText="Narrow Colleges by State"
+            margin="normal"
+            variant="filled"
+          >
+            {stateData.map(option => (
+              <MenuItem key={option.label} value={option.label}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
 
-            <TextField
-              id="filled-select-states"
-              select
-              className={classes.textField}
-              value={this.state.stateData}
-              onChange={this.handleChange('stateData')}
-              SelectProps={{
-                MenuProps: {
-                  className: classes.menu,
-                },
-              }}
-              helperText="Narrow Colleges by State"
-              margin="normal"
-              variant="filled"
-            >
-              {stateData.map(option => (
-                <MenuItem key={option.label} value={option.label}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
+          <TextField
+            id="filled-satScore"
+            className={classes.textField}
+            value={this.state.satScore}
+            onChange={this.handleChange('satScore')}
+            helperText="Submit your SAT Score if available"
+            margin="normal"
+            variant="filled"
+          />
 
-            <TextField
-              id="filled-satScore"
-              className={classes.textField}
-              value={this.state.satScore}
-              onChange={this.handleChange('satScore')}
-              helperText="Submit your SAT Score if available"
-              margin="normal"
-              variant="filled"
-            />
+          <TextField
+            id="filled-select-program"
+            select
+            className={classes.textField}
+            value={this.state.bachelorProgramData}
+            onChange={this.handleChange('bachelorProgramData')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            helperText="Please Select an Area of Study"
+            margin="normal"
+            variant="filled"
+          >
+            {bachelorProgramData.map(option => (
+              <MenuItem key={option.query} value={option.query}>
+                {option.program}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            id="filled-school"
+            className={classes.textField}
+            value={this.state.schoolName}
+            onChange={this.handleChange('schoolName')}
+            helperText="Search Colleges by Name"
+            margin="normal"
+            variant="filled"
+          />
 
-            <TextField
-              id="filled-select-program"
-              select
-              className={classes.textField}
-              value={this.state.bachelorProgramData}
-              onChange={this.handleChange('bachelorProgramData')}
-              SelectProps={{
-                MenuProps: {
-                  className: classes.menu,
-                },
-              }}
-              helperText="Please Select an Area of Study"
-              margin="normal"
-              variant="filled"
-            >
-              {bachelorProgramData.map(option => (
-                <MenuItem key={option.query} value={option.query}>
-                  {option.program}
-                </MenuItem>
-              ))}
-            </TextField>
-            <TextField
-              id="filled-school"
-              className={classes.textField}
-              value={this.state.schoolName}
-              onChange={this.handleChange('schoolName')}
-              helperText="Search Colleges by Name"
-              margin="normal"
-              variant="filled"
-            />
-
-            <Fab
-              variant="extended"
-              size="medium"
-              type="submit"
-              color='primary'
-              aria-label="Add"
-              onClick={() => this.handleSubmit()}
-              className={classes.margin}
-            >
-              <NavigationIcon className={classes.extendedIcon} />
-              Submit
+          <Fab
+            variant="extended"
+            size="medium"
+            type="submit"
+            color='primary'
+            aria-label="Add"
+            onClick={() => this.handleSubmit()}
+            className={classes.margin}
+          >
+            <NavigationIcon className={classes.extendedIcon} />
+            Submit
         </Fab>
-
-          </GridListTile>
-          <div>
-          <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center" }}>
-            College Lists Based on Your Search Criteria
+        </div>
+        <GridList cellHeight={'auto'} className={classes.gridList} style={{ overflowY: 'scroll', display:'flex', marginLeft:'160px', }}>
+        <div>
+              <Typography variant="h5" component="h5" style={{ width: '900px', textAlign: "center" }}>
+                College Lists Based on Your Search Criteria
           </Typography>
-          </div>
-          {this.state.colleges.map((college, i) => {
-            return (
-              
-              <GridItem> 
-                <div className={classes.container}>
+            </div>
+          <GridListTile key="Subheader" cols={2} style={{ height: 'auto', width:'600px', marginTop:'30px', marginBottom:'20px', marginLeft:'150px' }}>
+            
+            {this.state.colleges.map((college, i) => {
+              return (
 
-                  <Card className={classes.card}>
-                    <CardContent key={college["school.name"]}>
-                      <Typography variant="h5" component="h2">
-                        School Name: {college["school.name"]}
-                      </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                    </Typography>
-                    
-                    <Typography component="p">
-                      State: {college["school.state"]}
-                      <br />
-                      Average SAT Score: { college["latest.admissions.sat_scores.average.overall"]} 
-                      <br />
-                      In State Cost: {college["latest.cost.tuition.in_state"]}
-                      <br />
-                      Out of State Cost: {college["latest.cost.tuition.out_of_state"]}
-                    </Typography>
-                  </CardContent>
+                <GridItem style={{ marginTop:'30px', marginBottom:'20px',}}>
+                  <div className={classes.container}>
 
-                    <CardActions >
-                      <IconButton 
-                        className={classes.icon}
-                        key={i}
-                        id={i}
-                        onClick={(event) => this.handlePost(event)}
-                      >
-                      <MaterialIcon icon="turned_in_not" color={colorPalette.teal._400}/>
-                      </IconButton>
-                      <Button size="small">Link to School Site</Button>
-                    </CardActions>
+                    <Card className={classes.card}>
+                      <CardContent key={college["school.name"]}>
+                        <Typography variant="h5" component="h2">
+                          School Name: {college["school.name"]}
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                        </Typography>
+
+                        <Typography component="p">
+                          State: {college["school.state"]}
+                          <br />
+                          Average SAT Score: {college["latest.admissions.sat_scores.average.overall"]}
+                          <br />
+                          In State Cost: {college["latest.cost.tuition.in_state"]}
+                          <br />
+                          Out of State Cost: {college["latest.cost.tuition.out_of_state"]}
+                        </Typography>
+                      </CardContent>
+
+                      <CardActions >
+                        <IconButton
+                          className={classes.icon}
+                          key={i}
+                          id={i}
+                          onClick={(event) => this.handlePost(event)}
+                        >
+                          <MaterialIcon icon="turned_in_not" color={colorPalette.teal._400} />
+                        </IconButton>
+                        <Button size="small">Link to School Site</Button>
+                      </CardActions>
 
                     </Card>
                   </div>
                 </GridItem>
-            )
-          })}
-
+              )
+            })}
+          </GridListTile>
         </GridList>
       </div>
     );

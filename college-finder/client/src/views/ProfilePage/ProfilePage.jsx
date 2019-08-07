@@ -100,7 +100,7 @@ class ProfilePage extends React.Component {
     //the list of current colelges is saved as a variable here
     let currentColleges = this.state.colleges;
     //Here, the selected college is filtered out of current colleges. The result is saved to a variable.
-    let filteredColleges = currentColleges.filter(college => college.id != targetId);
+    let filteredColleges = currentColleges.filter(college => college.id !== targetId);
 
     console.log("College id " + targetId + " clicked by User " + this.state.user + ". Deleting College: " + event.currentTarget.name);
     //The list of filtered colleges is first set to state, effectively removing the selected college card from the page
