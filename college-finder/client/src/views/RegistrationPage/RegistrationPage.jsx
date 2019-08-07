@@ -115,7 +115,7 @@ class RegistrationPage extends React.Component {
         <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={4}></GridItem>
-        <Card style={{width: 800, height: 400, marginLeft: 280, marginTop: 285 }}>
+        <Card style={{width: 800, height: 400, marginLeft: 280, marginTop: 260 }}>
           <CardBody>
         <form
           className={classes.container}
